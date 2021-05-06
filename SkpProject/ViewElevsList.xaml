@@ -1,0 +1,38 @@
+﻿<Window x:Class="SkpProject.ViewElevsList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SkpProject"
+        mc:Ignorable="d"
+        Title="ViewElevsList" Height="650" Width="800">
+    <Grid>
+        <StackPanel HorizontalAlignment="Stretch" Background="Aquamarine" Margin="10">
+            <DataGrid Margin="5" Name="ElevsGrid" ColumnWidth="*" CanUserAddRows="False" MinColumnWidth="100" CanUserResizeColumns="True" SelectionChanged="ElevsGrid_SelectionChanged" >
+                
+            </DataGrid>
+            <Grid Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="150" />
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <WrapPanel Margin="5" Grid.Row="0">
+                    <Label Margin="2" FontWeight="Bold">Detailed Info:</Label>
+                    <Label Margin="2" Content="---" Name="ElevLable"></Label>
+                    
+                </WrapPanel>
+
+                <DockPanel HorizontalAlignment="Center" Margin="20" Grid.Row="1">
+                    <Button Margin="10" Width="150" Background="#3E454C" Height="50" Foreground="White" FontSize="22" Name="btnGodkendt" Click="btnGodkendt_Click">GodKendt</Button>
+                    <Button Margin="10" Width="150" Background="#3E454C" Height="50" Foreground="White" FontSize="22" Name="btnSlet" Click="btnSlet_Click">Slet</Button>
+                </DockPanel>
+                
+                
+
+            </Grid>
+            
+        </StackPanel>
+        
+    </Grid>
+</Window>
