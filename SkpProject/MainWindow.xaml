@@ -52,6 +52,8 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
+                
+                
                 <!--<Label FontSize="30" Grid.Column="0" Grid.Row="0" Margin="10"  >Søge elev :</Label>
                 <ComboBox x:Name="søgeElevText" Grid.Column="1" Grid.Row="0" Background="#eee" Grid.ColumnSpan="2" Width="350" Height="52"  Margin="10" SelectionChanged="søgeElevText_SelectionChanged" >
                     <ComboBox.ItemTemplate>
@@ -76,17 +78,55 @@
                 <Button  Background="#3E454C" Height="50" Foreground="White" FontSize="22" Name="btnLoadExcel"  Grid.Column="0" Grid.Row="1" Click="btnLoadExcel_Click"  Width="200" >Load Excel</Button>
                 <TextBox  Name="txtBox_sheet" Grid.Column="1" Grid.Row="1" Height="50" Width="400"  Grid.ColumnSpan="2" Margin="20"/>-->
 
+                
+                
+                
+                
                 <StackPanel HorizontalAlignment="Center">
                     <Border BorderBrush="Black" BorderThickness="0,0,0,5" Height="60" HorizontalAlignment="Center" VerticalAlignment="Center" Width="890">
                         <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Center">
-                            <!--<TextBox Height="30" Name="txtFilePath" Width="550" Margin="10,0,10,0" FontSize="15" Opacity="1" />-->
-                            <Button Content="Browse Excel" Name="btnOpen" Width="120" FontSize="15" Height="30" FontWeight="Bold" Click="btnOpen_Click" />
-                            <!--<Button Content="Close" FontSize="15" Height="30" FontWeight="Bold" Name="btnClose" Width="75" Margin="110,0,0,0" Background="#FFEFE5E5" Click="btnClose_Click" />-->
+                           <TextBox Height="30" Name="txtFilePath" Width="550" Margin="10,0,10,0" FontSize="15" Opacity="1" />
+                            <Button Content="Browse Excel" Name="btnOpen" Width="120" FontSize="15" Height="30" FontWeight="Bold" Click="btnOpen_Click_2" />
+                            <Button Content="Close" FontSize="15" Height="30" FontWeight="Bold" Name="btnClose" Width="75" Margin="110,0,0,0" Background="#FFEFE5E5" Click="btnClose_Click" />
                         </WrapPanel>
                     </Border>
-                    <!--<Label Name="txtIns" Content="View Uploaded records to DataGridView" FontSize="15" FontWeight="Bold" Margin="15" HorizontalAlignment="Center" />-->
-                    <DataGrid AutoGenerateColumns="True" IsReadOnly="True" HorizontalAlignment="Center" Name="dataGridView" VerticalAlignment="Center" />
+                   <Label Name="txtIns" Content="View Uploaded records to DataGridView" FontSize="15" FontWeight="Bold" Margin="15" HorizontalAlignment="Center" />
+                    <DataGrid AutoGenerateColumns="True" IsReadOnly="True" Height="500" Width="850" HorizontalAlignment="Center" Name="dataGridView" VerticalAlignment="Center" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="CPR Nr."/>
+                            <DataGridTextColumn Header="Fornavn"/>
+                            <DataGridTextColumn Header="Efternavn"/>
+                            <DataGridTextColumn Header="Uddannelse addresse"/>
+                            <DataGridTextColumn Header="Elev type"/>
+                            <DataGridTextColumn Header="Dato"/>
+                            <DataGridTextColumn Header="9 klasse"/>
+                        </DataGrid.Columns>
+
+                    </DataGrid>
                 </StackPanel>
+                
+                
+                
+
+                <!--<Border  BorderBrush="Black" BorderThickness="5">
+                    <StackPanel HorizontalAlignment="Center">
+                        <Border BorderBrush="Black" BorderThickness="0,0,0,5" Height="60" HorizontalAlignment="Center" VerticalAlignment="Center" Width="890">
+                            <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                                <TextBox Height="30" Name="txtFilePath" Width="550" Margin="10,0,10,0" FontSize="15" Opacity="1"/>
+                                <Button Content="Browse Excel" Name="btnOpen" Width="120" FontSize="15" Height="30" FontWeight="Bold" Click="btnOpen_Click_1"/>
+
+
+                                <Label Name="txtIns" Content="View Uploaded records to DataGridView" FontSize="15" FontWeight="Bold" Margin="15" HorizontalAlignment="Center"/>
+                                <DataGrid AutoGenerateColumns="True" IsReadOnly="True"  HorizontalAlignment="Center" Name="dtGrid" VerticalAlignment="Center"/>
+
+
+
+
+                            </WrapPanel>
+                        </Border>
+                    </StackPanel>
+                </Border>-->
+
 
 
             </Grid>
