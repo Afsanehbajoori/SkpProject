@@ -14,32 +14,32 @@ namespace DataAccess
     {
        // private string path = @"./DemoDBElev.csv";
 
-        public ObservableCollection<Elev> elevs { get; set; } = new ObservableCollection<Elev>();
+        //public ObservableCollection<Elev> elevs { get; set; } = new ObservableCollection<Elev>();
 
-        public ElevDataAccess()
-        {
-            ReadElevs();
-        }
+        //public ElevDataAccess()
+        //{
+        //    ReadElevs();
+        //}
 
-        private void ReadElevs()
-        {
-            Elev el1 = new Elev()
-            {
-                Id = 1,
-                Navn = "Jan Hansen",
-                CPRNr = "010221-4258",
-                SkoleId = 1
-            };
+        //private void ReadElevs()
+        //{
+            //Elev el1 = new Elev()
+            //{
+            //    Id = 1,
+            //    ENavn = "Jan Hansen",
+            //    CPRNr = "010221-4258",
+            //    SkoleId = 1
+            //};
 
-            Elev el2 = new Elev()
-            {
-                Id = 2,
-                Navn = "Ella Jensen",
-                CPRNr = "010220-5542",
-                SkoleId = 2
-            };
-            elevs.Add(el1);
-            elevs.Add(el2);
+            //Elev el2 = new Elev()
+            //{
+            //    Id = 2,
+            //    ENavn = "Ella Jensen",
+            //    CPRNr = "010220-5542",
+            //    SkoleId = 2
+            //};
+            //elevs.Add(el1);
+            //elevs.Add(el2);
 
             //using(var reader= new StreamReader(path))
             //{
@@ -63,18 +63,18 @@ namespace DataAccess
             //}
 
 
-        }
+        //}
 
         //public void AddElev(Elev elev)
         //{
         //    elevs.Add(elev);
         //}
 
-        public int GetNextId()
-        {
-            int index = elevs.Any() ? elevs.Max(x => x.Id) + 1 : 1;
-            return index;
-        }
+        //public int GetNextId()
+        //{
+        //    int index = elevs.Any() ? elevs.Max(x => x.Id) + 1 : 1;
+        //    return index;
+        //}
 
 
     }

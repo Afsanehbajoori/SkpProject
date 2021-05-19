@@ -25,17 +25,17 @@ namespace SkpProject
         ObservableCollection<Elev> elevs = new ObservableCollection<Elev>();
         public Elev currentElev { get; set; } = new Elev();
 
-        public ViewElevsList()
-        {
-            InitializeComponent();
-            fillData();
-            ElevsGrid.ItemsSource = elevs;
-        }
+        //public ViewElevsList()
+        //{
+        //    InitializeComponent();
+        //    fillData();
+        //    ElevsGrid.ItemsSource = elevs;
+        //}
 
-        private void fillData()
-        {
-            elevs = elevDataAccess.elevs;
-        }
+        //private void fillData()
+        //{
+        //    elevs = elevDataAccess.elevs;
+        //}
 
 
         private void ElevsGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -43,7 +43,7 @@ namespace SkpProject
             //if (ElevsGrid.SelectedItems)
             //{
                 currentElev = ElevsGrid.SelectedItems as Elev;
-                ElevLable.Content = currentElev.GetBasicInfo();
+               // ElevLable.Content = currentElev.GetBasicInfo();
             //}
             
 
