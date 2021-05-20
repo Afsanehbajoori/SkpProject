@@ -43,7 +43,7 @@
 
 
 
-        <Border Grid.Column="1" Background="LightGray" Name="UnderviserPanel" BorderThickness="2" BorderBrush="Gray" Visibility="Visible">
+        <Border Grid.Column="1" Background="LightGray" Name="UnderviserPanel" BorderThickness="2" BorderBrush="Gray" Visibility="Collapsed">
 
             <Grid>
 
@@ -53,13 +53,13 @@
                 </Grid.RowDefinitions>
 
 
-                
 
-                    <!--<Border Grid.Row="0"  BorderBrush="Black" BorderThickness="5" Height="676" VerticalAlignment="Top" Grid.RowSpan="2"  HorizontalAlignment="Center" Width="762" >-->
 
-                    <!--<ScrollViewer>-->
-                   
-                        <!--<Grid>
+                <!--<Border Grid.Row="0"  BorderBrush="Black" BorderThickness="5" Height="676" VerticalAlignment="Top" Grid.RowSpan="2"  HorizontalAlignment="Center" Width="762" >-->
+
+                <!--<ScrollViewer>-->
+
+                <!--<Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto"/>
                             <ColumnDefinition Width="auto"/>
@@ -90,15 +90,15 @@
 
 
 
-                        <!--design to read excel fil:-->
-                        <!--<StackPanel HorizontalAlignment="Center">
+                <!--design to read excel fil:-->
+                <!--<StackPanel HorizontalAlignment="Center">
                     <Border BorderBrush="Black" BorderThickness="0,0,0,5" Height="60" HorizontalAlignment="Center" VerticalAlignment="Center" Width="890">
                         <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Center">
                            <TextBox Height="30" Name="txtFilePath" Width="550" Margin="10,0,10,0" FontSize="15" Opacity="1" />
                             <Button Content="Browse Excel" Name="btnOpen" Width="120" FontSize="15" Height="30" FontWeight="Bold" Click="btnOpen_Click_2" />
                             -->
-                        <!--<Button Content="Close" FontSize="15" Height="30" FontWeight="Bold" Name="btnClose" Width="75" Margin="110,0,0,0" Background="#FFEFE5E5" Click="btnClose_Click" />-->
-                        <!--
+                <!--<Button Content="Close" FontSize="15" Height="30" FontWeight="Bold" Name="btnClose" Width="75" Margin="110,0,0,0" Background="#FFEFE5E5" Click="btnClose_Click" />-->
+                <!--
                         </WrapPanel>
                     </Border>
                    <Label Name="txtIns" Content="View Uploaded records to DataGridView" FontSize="15" FontWeight="Bold" Margin="15" HorizontalAlignment="Center" />
@@ -111,10 +111,10 @@
 
 
 
-                        <!--design to search student and validations:-->
+                <!--design to search student and validations:-->
 
 
-                        <!--<Label FontSize="20" Grid.Column="0" Grid.Row="0" Margin="10" >Søge elev :</Label>
+                <!--<Label FontSize="20" Grid.Column="0" Grid.Row="0" Margin="10" >Søge elev :</Label>
                         <TextBox x:Name="SearchStudentTxt" Grid.Row="0" Grid.Column="1"  Width="150" Height="30" Grid.ColumnSpan="2" Background="LightGray" TextChanged="SearchStudentTxt_TextChanged"  />
                         <ListBox x:Name="SearchStudentBox" Grid.Column="0" Grid.Row="1" Background="LightGray" Grid.ColumnSpan="3"  Margin="10" SelectionChanged="SearchStudentBox_SelectionChanged" >
                             <ListBox.ItemTemplate>
@@ -137,7 +137,7 @@
                         <StackPanel>
                             <Label FontSize="20"  >Søge elev :</Label>
                             <TextBox x:Name="SearchStudentTxt"   Width="150" Height="30"  Background="LightGray" TextChanged="SearchStudentTxt_TextChanged"  />
-                            <ListBox x:Name="SearchStudentBox" Background="LightGray"    SelectionChanged="SearchStudentBox_SelectionChanged" >
+                            <ListBox x:Name="SearchStudentBox" Background="LightGray" Margin="20"   SelectionChanged="SearchStudentBox_SelectionChanged" >
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding FullInfo}"/>
@@ -150,22 +150,22 @@
                             <Label FontSize="20"   Content="Ekstra Information:" />
                             <Label FontSize="20"  Content="---" Name="StudentsFullInfo" />
 
-                       
-                    </StackPanel>
-                        </ScrollViewer>
+
+                        </StackPanel>
+                    </ScrollViewer>
                 </Border>
 
 
 
 
 
-               
 
-                    <Border  Grid.Row="1">
+
+                <Border  Grid.Row="1">
                     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" >
 
                         <StackPanel Margin="10"  Grid.Column="0" Grid.Row="4"   x:Name="radioButtonValidation" >
-                            
+
                             <DatePicker Width="150" HorizontalAlignment="Left" Name="DateTimePiker" SelectedDateChanged="DateTimePiker_SelectedDateChanged"></DatePicker>
                             <TextBlock x:Name="ShowAge" HorizontalAlignment="left" Height="20" Width="30" FontSize="10" />
                             <RadioButton ClickMode="Press" GroupName="age"   >Over 25</RadioButton>
@@ -189,34 +189,36 @@
 
 
                             <Label  Grid.Column="0" Grid.Row="7" FontWeight="Bold" Content="Vælg en item:" />
-                            <ComboBox Background="LightGray" Name="ComboboxValidation">
+                            <ComboBox Background="LightGray" Height="20" Width="200" HorizontalAlignment="Left" Name="ComboboxValidation">
                                 <ComboBoxItem >ComboBox Item #1</ComboBoxItem>
                                 <ComboBoxItem >ComboBox Item #2</ComboBoxItem>
                                 <ComboBoxItem>ComboBox Item #3</ComboBoxItem>
                             </ComboBox>
 
                             <Label   Grid.Column="0" Grid.Row="7" FontWeight="Bold">Notification:</Label>
-                            <TextBox Background="LightGray" Margin="30" x:Name="MultiLineTxt" Width="150" Height="50" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Grid.Column="0" Grid.Row="7"/>
-
-                           
-
-                            <Button  Background="#3E454C" Height="50" Foreground="White" FontSize="22" Name="btnSave"  Grid.Column="5" Grid.Row="8" Click="btnSave_Click"  Width="200" Margin=" 50" >Gem</Button>
+                            <TextBox Background="LightGray"  x:Name="MultiLineTxt" Width="150" Height="50" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible"  HorizontalAlignment="Left"/>
 
 
 
-                            
-                     
-                    </StackPanel>
+                            <Button  Background="#3E454C" Height="50" Foreground="White" FontSize="22" Name="btnSave"  Click="btnSave_Click"  Width="200" Margin=" 50" HorizontalAlignment="Center" >Gem</Button>
+
+
+                            <!--<TextBox Height="30" Name="txtOpenPdfFile" Width="550" Margin="10,0,10,0" FontSize="15" Opacity="1" />-->
+                            <Button x:Name="btnOpenPdfFile" Click="btnOpenPdfFile_Click" Height="50" Width="200" HorizontalAlignment="Center" Foreground="White" FontSize="22" Background="#3E454C">Open PDF File</Button>
+                            <WebBrowser x:Name="pdfWebViewer" ></WebBrowser>
+
+
+                        </StackPanel>
                     </ScrollViewer>
                 </Border>
             </Grid>
-            
+
         </Border>
-        
 
-       
 
-                        <!--<StackPanel Margin="10"   Grid.Column="0" Grid.Row="5"  x:Name="radioButtonErfaringValidation" >
+
+
+        <!--<StackPanel Margin="10"   Grid.Column="0" Grid.Row="5"  x:Name="radioButtonErfaringValidation" >
                             <Label FontWeight="Bold" >Har du nogle erfaring?</Label>
 
                             <RadioButton ClickMode="Press" GroupName="erfaring"   >Ja</RadioButton>
@@ -228,7 +230,7 @@
 
 
 
-                        <!--<StackPanel Margin="10" Grid.Column="0" Grid.Row="6">
+        <!--<StackPanel Margin="10" Grid.Column="0" Grid.Row="6">
                             <Label  Grid.Column="0" Grid.Row="7" FontWeight="Bold" Content="Vælg en item:" />
                             <ComboBox Background="LightGray" Name="ComboboxValidation">
                                 <ComboBoxItem >ComboBox Item #1</ComboBoxItem>
@@ -237,26 +239,14 @@
                             </ComboBox>
                         </StackPanel>-->
 
-                        <!--<Label   Grid.Column="0" Grid.Row="7" FontWeight="Bold">Notification:</Label>
+        <!--<Label   Grid.Column="0" Grid.Row="7" FontWeight="Bold">Notification:</Label>
                         <TextBox Background="LightGray" Margin="30" x:Name="MultiLineTxt" Width="150" Height="50" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Grid.Column="0" Grid.Row="7"/>
 
                         <Button  Background="#3E454C" Height="50" Foreground="White" FontSize="22" Name="btnSave"  Grid.Column="5" Grid.Row="8" Click="btnSave_Click"  Width="200" Margin=" 50" >Gem</Button>-->
 
 
 
-                    <!--</Grid>-->
-
-                        
-                    
-               
-
-
-
-
-
-           
-
-        
+        <!--</Grid>-->
 
 
 
@@ -292,7 +282,19 @@
 
 
 
-        <Border Grid.Column="1" Margin="2" Background="LightGray" Name="LederPanel" HorizontalAlignment="Stretch" BorderThickness="2" BorderBrush="Gray" Visibility="Collapsed">
+
+
+
+
+
+
+
+
+
+
+
+
+        <Border Grid.Column="1" Margin="2" Background="LightGray" Name="LederPanel" HorizontalAlignment="Stretch" BorderThickness="2" BorderBrush="Gray" Visibility="Visible">
 
             <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Grid.ColumnDefinitions>
@@ -307,14 +309,14 @@
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Column="0" Grid.Row="0" Text="Username" FontSize="30"  Height="64" Width="229"    />
-                <TextBox x:Name="usernameText" Grid.Column="1" Grid.Row="0" Width="260" Background="#eee"  Height="52" />
+                <TextBlock Grid.Column="0" Grid.Row="0" Text="Username" FontSize="30"  Height="64"    />
+                <TextBox x:Name="usernameText" Grid.Row="0" Background="#eee"  Height="52" Grid.ColumnSpan="3" Margin="198,6,269,6" />
 
 
 
 
-                <TextBlock Grid.Column="0" Grid.Row="1" Text="Password" FontSize="30" Height="64" Width="229"   />
-                <PasswordBox  PasswordChar="*" x:Name="passwordText" Grid.Column="1" Grid.Row="1" Width="260" Height="52" Background="#eee" />
+                <TextBlock Grid.Column="0" Grid.Row="1" Text="Password" FontSize="30" Height="64" Margin="10,0,260,0" Grid.ColumnSpan="2"   />
+                <PasswordBox  PasswordChar="*" x:Name="passwordText" Grid.Row="1" Height="52" Background="#eee" Grid.ColumnSpan="3" Margin="198,6,269,6" />
 
                 <Button x:Name="signinButton"  Background="#3E454C" Content="Sign In" FontSize="30" Foreground="White" Margin="20" Click="signinButton_Click"  Grid.Column="2"  Grid.Row="2"   Height="64" Width="229"   />
             </Grid>

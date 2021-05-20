@@ -32,7 +32,7 @@ namespace SkpProject
     /// </summary>
     public partial class MainWindow : Window
     {
-       
+
 
         //ElevDataAccess elevDataAccess = new ElevDataAccess();
 
@@ -42,7 +42,7 @@ namespace SkpProject
 
         public Student currentStudent { get; set; } = new Student();
 
-        
+
 
         public MainWindow()
         {
@@ -173,8 +173,41 @@ namespace SkpProject
             else
             {
                 MessageBox.Show("Er du sikker?");
+                clear();
+            }
+            
+
+        }
+
+        public void clear()
+        {
+            IEnumerable<RadioButton> radioButtons = radioButtonValidation.Children.OfType<RadioButton>();
+            Dictionary<string, List<RadioButton>> radioBtnList = new Dictionary<string, List<RadioButton>>();
+
+
+
+            foreach (RadioButton item in radioButtons)
+            {
+                if (item.GroupName == "RadioClass" )
+                {
+                    item.IsChecked = false;
+                }
+                if(item.GroupName == "erfaring")
+                {
+                    item.IsChecked = false;
+                }
+                if (item.GroupName == "age")
+                {
+                    item.IsChecked = false;
+                }
+
+
             }
 
+            if(this.ComboboxValidation.SelectedItem !=null)
+            {
+                this.ComboboxValidation.SelectedIndex = -1;
+            }
         }
 
         private void signinButton_Click(object sender, RoutedEventArgs e)
@@ -328,6 +361,25 @@ namespace SkpProject
             stu.CalculateAge();
             
         }
+
+        private void btnOpenPdfFile_Click(object sender, RoutedEventArgs e)
+        {
+            //this.Hide();
+            ////fileWatch();
+            //OpenPdfFile openPdfFile = new OpenPdfFile();
+            //openPdfFile.Show();
+            OpenFileDialog openFile = new OpenFileDialog();
+            openFile.Filter = "PDF |*.pdf";
+            Nullable<bool> result = openFile.ShowDialog();
+
+            if ((bool)result)
+            {
+                string path = openFile.FileName;
+                pdfWebViewer.Navigate(new Uri("about:blank"));
+                pdfWebViewer.Navigate(path);
+            }
+        }
+
     }
 
 

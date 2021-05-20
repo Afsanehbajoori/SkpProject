@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SkpProject"
         mc:Ignorable="d"
-        Title="ViewElevsList" Height="650" Width="800">
+        Title="ViewElevsList" Height="700" Width="1020">
     <Grid>
-        <StackPanel HorizontalAlignment="Stretch" Background="Aquamarine" Margin="10">
-            <DataGrid Margin="5" Name="ElevsGrid" ColumnWidth="*" CanUserAddRows="False" MinColumnWidth="100" CanUserResizeColumns="True" SelectionChanged="ElevsGrid_SelectionChanged" >
+        <StackPanel HorizontalAlignment="Stretch" Background="LightGray" Margin="10" Visibility="Visible">
+            <!--<DataGrid Margin="5" Name="ElevsGrid" ColumnWidth="*" CanUserAddRows="False" MinColumnWidth="100" CanUserResizeColumns="True" SelectionChanged="ElevsGrid_SelectionChanged" >
                 
             </DataGrid>
             <Grid Margin="5">
@@ -19,16 +19,42 @@
 
                 <WrapPanel Margin="5" Grid.Row="0">
                     <Label Margin="2" FontWeight="Bold">Detailed Info:</Label>
-                    <Label Margin="2" Content="---" Name="ElevLable"></Label>
+                    <Label Margin="2" Content="" Name="ElevLable"></Label>
                     
-                </WrapPanel>
+                </WrapPanel>-->
+            <Grid>
 
-                <DockPanel HorizontalAlignment="Center" Margin="20" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="500"/>
+                    <RowDefinition Height="100"/>
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="0" BorderBrush="Gray" BorderThickness="2">
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <Label FontSize="20"  >Søge elev :</Label>
+                        <TextBox x:Name="SearchStudentTxt"   Width="150" Height="30" HorizontalAlignment="Stretch" Background="LightGray" TextChanged="SearchStudentTxt_TextChanged"   />
+                        <ListBox x:Name="SearchStudentBox" Background="LightGray" Margin="20"  SelectionChanged="SearchStudentBox_SelectionChanged"   >
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding FullInfo}"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+
+                        </ListBox>
+                        
+                    </StackPanel>
+                </ScrollViewer>
+                </Border>
+
+
+                <Border  Grid.Row="1">
+                    <DockPanel HorizontalAlignment="Center" Margin="20" Grid.Row="1">
                     <Button Margin="10" Width="150" Background="#3E454C" Height="50" Foreground="White" FontSize="22" Name="btnGodkendt" Click="btnGodkendt_Click">GodKendt</Button>
                     <Button Margin="10" Width="150" Background="#3E454C" Height="50" Foreground="White" FontSize="22" Name="btnSlet" Click="btnSlet_Click">Slet</Button>
                 </DockPanel>
-                
-                
+
+                </Border>
 
             </Grid>
             
