@@ -43,12 +43,12 @@
 
 
 
-        <Border Grid.Column="1" Background="LightGray" Name="UnderviserPanel" BorderThickness="2" BorderBrush="Gray" Visibility="Collapsed">
+        <Border Grid.Column="1" Background="LightGray" Name="UnderviserPanel" BorderThickness="2" BorderBrush="Gray" Visibility="Visible">
 
             <Grid>
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="150"/>
+                    <RowDefinition Height="200"/>
                     <RowDefinition Height="500"/>
                 </Grid.RowDefinitions>
 
@@ -132,7 +132,7 @@
 
                         <Label FontSize="20"  Margin="20" Grid.Column="0" Grid.Row="3" Content="Ekstra Information:" />
                         <Label FontSize="20" Grid.Column="1" Grid.Row="3" Margin="20" Content="" Name="StudentsFullInfo" />-->
-                <Border Grid.Row="0" BorderBrush="Gray" BorderThickness="2">
+                <Border Grid.Row="0" BorderBrush="Gray" BorderThickness="1">
                     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                         <StackPanel>
                             <Label FontSize="20"  >Søge elev :</Label>
@@ -147,8 +147,8 @@
                             </ListBox>
 
 
-                            <Label FontSize="20"   Content="Ekstra Information:" />
-                            <Label FontSize="20"  Content="---" Name="StudentsFullInfo" />
+                            <!--<Label FontSize="20"   Content="Ekstra Information:" />-->
+                            <Label FontSize="20"  Content="" Name="StudentsFullInfo" />
 
 
                         </StackPanel>
@@ -162,7 +162,9 @@
 
 
                 <Border  Grid.Row="1">
+                    
                     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" >
+                        
 
                         <StackPanel Margin="10"  Grid.Column="0" Grid.Row="4"   x:Name="radioButtonValidation" >
 
@@ -200,14 +202,16 @@
 
 
 
-                            <Button  Background="#3E454C" Height="50" Foreground="White" FontSize="22" Name="btnSave"  Click="btnSave_Click"  Width="200" Margin=" 50" HorizontalAlignment="Center" >Gem</Button>
+                            <DockPanel HorizontalAlignment="Center" Margin="20" >
+                                <Button  Background="#3E454C" Margin="10" Width="150"  Height="50" Foreground="White" FontSize="22" Name="btnSave"  Click="btnSave_Click"   HorizontalAlignment="Center" >Gem</Button>
 
+                                <Button  Background="#3E454C" Foreground="White" FontSize="22" Name="btnClose"  Click="btnClose_Click_1"  Margin="10" Width="150"  Height="50" HorizontalAlignment="Center" >Close</Button>
+                                <!--<TextBox Height="30" Name="txtOpenPdfFile" Width="550" Margin="10,0,10,0" FontSize="15" Opacity="1" />-->
+                                <Button x:Name="btnOpenPdfFile" Click="btnOpenPdfFile_Click" Margin="10" Width="150"  Height="50" HorizontalAlignment="Center" Foreground="White" FontSize="22" Background="#3E454C">Open PDF File</Button>
+                                <WebBrowser x:Name="pdfWebViewer" ></WebBrowser>
 
-                            <!--<TextBox Height="30" Name="txtOpenPdfFile" Width="550" Margin="10,0,10,0" FontSize="15" Opacity="1" />-->
-                            <Button x:Name="btnOpenPdfFile" Click="btnOpenPdfFile_Click" Height="50" Width="200" HorizontalAlignment="Center" Foreground="White" FontSize="22" Background="#3E454C">Open PDF File</Button>
-                            <WebBrowser x:Name="pdfWebViewer" ></WebBrowser>
-
-
+                               
+                            </DockPanel>
                         </StackPanel>
                     </ScrollViewer>
                 </Border>
@@ -294,7 +298,7 @@
 
 
 
-        <Border Grid.Column="1" Margin="2" Background="LightGray" Name="LederPanel" HorizontalAlignment="Stretch" BorderThickness="2" BorderBrush="Gray" Visibility="Visible">
+        <Border Grid.Column="1" Margin="2" Background="LightGray" Name="LederPanel" HorizontalAlignment="Stretch" BorderThickness="2" BorderBrush="Gray" Visibility="Collapsed">
 
             <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Grid.ColumnDefinitions>

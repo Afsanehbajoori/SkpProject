@@ -38,20 +38,29 @@
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding FullInfo}"/>
-                                </DataTemplate>
+                                        
+                                    </DataTemplate>
                             </ListBox.ItemTemplate>
 
                         </ListBox>
+                        <!--web browser to open pdf file:-->
+                            <WebBrowser x:Name="pdfWebViewer" ></WebBrowser>
                         
-                    </StackPanel>
+                        
+                        <!--using a document viewer to view .docx documents *******:-->
+                            <!--<DocumentViewer HorizontalAlignment="Left" Margin="30,10,0,0"
+                Document="{Binding Path=DocText, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="200" Width="600" />-->
+
+                        </StackPanel>
                 </ScrollViewer>
                 </Border>
 
 
                 <Border  Grid.Row="1">
-                    <DockPanel HorizontalAlignment="Center" Margin="20" Grid.Row="1">
-                    <Button Margin="10" Width="150" Background="#3E454C" Height="50" Foreground="White" FontSize="22" Name="btnGodkendt" Click="btnGodkendt_Click">GodKendt</Button>
+                    <DockPanel HorizontalAlignment="Center" Margin="20" >
+                        <Button Margin="10" Width="150"  Height="50" Background="#3E454C" Foreground="White" FontSize="22" Name="btnGodkendt" Click="btnGodkendt_Click">GodKendt</Button>
                     <Button Margin="10" Width="150" Background="#3E454C" Height="50" Foreground="White" FontSize="22" Name="btnSlet" Click="btnSlet_Click">Slet</Button>
+                    <Button   Margin="10" Width="150" Background="#3E454C" Height="50" Foreground="White" FontSize="22" Name="btnClose"  Click="btnClose_Click"   >Close</Button>
                 </DockPanel>
 
                 </Border>

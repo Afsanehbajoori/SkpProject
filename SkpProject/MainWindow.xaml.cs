@@ -19,10 +19,11 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.OleDb;
 using System.Data;
+using Spire.Doc;
+using System.IO;
 using Excel = Microsoft.Office.Interop.Excel;
 using ClosedXML.Excel;
 using SkpProject;
-
 
 
 namespace SkpProject
@@ -173,9 +174,12 @@ namespace SkpProject
             else
             {
                 MessageBox.Show("Er du sikker?");
+                
                 clear();
             }
-            
+
+
+           
 
         }
 
@@ -380,6 +384,41 @@ namespace SkpProject
             }
         }
 
+        private void btnSubmit_Click(object sender, RoutedEventArgs e)
+        {
+            //initialize word object
+            Document document = new Document();
+            FileDialog fileDialog = new OpenFileDialog();
+            fileDialog.ShowDialog();
+            string path = fileDialog.FileName;
+            document.LoadFromFile(path);
+            //get strings to replace 
+            Dictionary<string, string> dicReplace = GetReplaceDictionary();
+            //Replace text 
+            foreach (KeyValuePair<string, string> kvp in dicReplace)
+            {
+                document.Replace(kvp.Key, kvp.Value, true, true);
+            }
+            //Save doc file.
+            document.SaveToFile(path, FileFormat.Docx);
+            //Convert to PDF
+            document.SaveToFile(path, FileFormat.PDF);
+            MessageBox.Show("All tasks are finished.");
+            document.Close();
+        }
+
+        Dictionary<string, string> GetReplaceDictionary()
+        {
+            Dictionary<string, string> replaceDict = new Dictionary<string, string>();
+            replaceDict.Add("#ForNavvn#", "Afsaneh");
+
+            return replaceDict;
+        }
+
+        private void btnClose_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 
 

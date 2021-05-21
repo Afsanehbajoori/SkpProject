@@ -15,6 +15,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Microsoft.Win32;
+using System.IO;
+using System.Windows.Xps.Packaging;
+
 
 namespace SkpProject
 {
@@ -23,6 +27,24 @@ namespace SkpProject
     /// </summary>
     public partial class ViewElevsList : Window
     {
+
+        //private IDocumentPaginatorSource _docText;
+        //public IDocumentPaginatorSource DocText
+        //{
+        //    get
+        //    {
+
+        //        return _docText;
+        //    }
+
+        //    set
+        //    {
+        //        _docText = value;
+        //        RaisePropertyChanged("DocText");
+        //    }
+        //}
+
+
 
         public Student currentStudent { get; set; } = new Student();
         public ViewElevsList()
@@ -63,11 +85,46 @@ namespace SkpProject
         {
             if (SearchStudentBox.SelectedIndex >= 0)
             {
-                Student stu = new Student();
-                stu.CalculateAge();
                 currentStudent = SearchStudentBox.SelectedItem as Student;
                 //StudentsFullInfo.Content = currentStudent.FullInfo;
+                string filnavn = currentStudent.LastName;
+                OpenFileDialog openFile = new OpenFileDialog();
+
+                //openFile.Filter = "PDF |*.pdf";
+                openFile.DefaultExt = ".pdf";
+                openFile.FileName = $"C:\\Users\\afba\\Desktop\\{filnavn}.pdf";
+
+                //openFile.DefaultExt = ".docx";
+                //openFile.Filter= ".Docx Files (*.docx)|*.docx";
+                string newXPSDocName = String.Concat(System.IO.Path.GetDirectoryName(openFile.FileName), "\\", System.IO.Path.GetFileNameWithoutExtension(openFile.FileName), ".pdf");
+                //PDF_Placeholder.Document = ConvertWordDocToXPSDoc(pdffile.FileName, newXPSDocName).GetFixedDocumentSequence();
+
+
+                //Nullable<bool> result = openFile.ShowDialog();
+
+                //if ((bool)result)
+                //{
+
+
+                // open pdf file in web browser:
+                string path = openFile.FileName;
+                pdfWebViewer.Navigate(new Uri("about:blank"));
+                    pdfWebViewer.Navigate(path);
+
+
+                    //open word documents in documents viewwr:
+                    //Microsoft.Office.Interop.Word.Application word = new Microsoft.Office.Interop.Word.Application();
+                    //string newXPSDocumentName = String.Concat(System.IO.Path.GetDirectoryName(openFile.FileName), "\\",
+                    //           System.IO.Path.GetFileNameWithoutExtension(openFile.FileName), ".xps");
+                    //DocText = ConvertWordDocToXPSDoc(openFile.FileName, newXPSDocumentName).GetFixedDocumentSequence();
+
+                //}
             }
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
