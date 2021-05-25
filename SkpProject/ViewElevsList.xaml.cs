@@ -55,43 +55,6 @@ namespace SkpProject
 
        
 
-
-        
-
-        private void btnGodkendt_Click(object sender, RoutedEventArgs e)
-        {
-            //MessageBox.Show("hi");
-            //var selectedItem = SearchStudentBox.Items.Cast<CheckBox>().Where(x => x.IsChecked == true).Select(x => x.Content) ;
-
-
-
-
-            //foreach (CheckBox item in SearchStudentBox.Items)
-            //{
-            //    if (item.IsChecked == true)
-            //    {
-            //       Student currentStudent = SearchStudentBox.SelectedItem as Student ;
-            //        string filnavn = currentStudent.LastName;
-
-            //        OpenFileDialog openFile = new OpenFileDialog();
-            //        openFile.DefaultExt = ".pdf";
-            //        openFile.FileName = $"C:\\Users\\afba\\Desktop\\{filnavn}.pdf";
-            //        string path = openFile.FileName;
-            //        pdfWebViewer.Navigate(new Uri("about:blank"));
-            //        pdfWebViewer.Navigate(path);
-
-            //    }
-
-            //}
-
-
-        }
-
-        private void btnSlet_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void SearchStudentTxt_TextChanged(object sender, TextChangedEventArgs e)
         {
             string text = SearchStudentTxt.Text;
@@ -105,48 +68,49 @@ namespace SkpProject
             //ObservableCollection<Student> GetStudents = Data.students.Select(student => (student.FirstName).StartsWith(text)).ToList();
         }
 
-        private void SearchStudentBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (SearchStudentBox.SelectedIndex >= 0)
-            {
-                currentStudent = SearchStudentBox.SelectedItem as Student;
-                //StudentsFullInfo.Content = currentStudent.FullInfo;
-                string filnavn = currentStudent.LastName;
-                OpenFileDialog openFile = new OpenFileDialog();
 
-                //openFile.Filter = "PDF |*.pdf";
-                openFile.DefaultExt = ".pdf";
-                openFile.FileName = $"C:\\Users\\afba\\Desktop\\{filnavn}.pdf";
+        //private void SearchStudentBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    if (SearchStudentBox.SelectedIndex >= 0)
+        //    {
+        //        currentStudent = SearchStudentBox.SelectedItem as Student;
+        //        //StudentsFullInfo.Content = currentStudent.FullInfo;
+        //        string filnavn = currentStudent.LastName;
+        //        OpenFileDialog openFile = new OpenFileDialog();
 
-                //openFile.DefaultExt = ".docx";
-                //openFile.Filter= ".Docx Files (*.docx)|*.docx";
+        //        //openFile.Filter = "PDF |*.pdf";
+        //        openFile.DefaultExt = ".pdf";
+        //        openFile.FileName = $"C:\\Users\\afba\\Desktop\\{filnavn}.pdf";
 
-                //open pdf file in the program
-               // string newXPSDocName = String.Concat(System.IO.Path.GetDirectoryName(openFile.FileName), "\\", System.IO.Path.GetFileNameWithoutExtension(openFile.FileName), ".pdf");
-                //PDF_Placeholder.Document = ConvertWordDocToXPSDoc(pdffile.FileName, newXPSDocName).GetFixedDocumentSequence();
+        //        //openFile.DefaultExt = ".docx";
+        //        //openFile.Filter= ".Docx Files (*.docx)|*.docx";
 
-
-                //Nullable<bool> result = openFile.ShowDialog();
-
-                //if ((bool)result)
-                //{
+        //        //open pdf file in the program
+        //       // string newXPSDocName = String.Concat(System.IO.Path.GetDirectoryName(openFile.FileName), "\\", System.IO.Path.GetFileNameWithoutExtension(openFile.FileName), ".pdf");
+        //        //PDF_Placeholder.Document = ConvertWordDocToXPSDoc(pdffile.FileName, newXPSDocName).GetFixedDocumentSequence();
 
 
-                // open pdf file in web browser:
-                string path = openFile.FileName;
-                pdfWebViewer.Navigate(new Uri("about:blank"));
-                    pdfWebViewer.Navigate(path);
+        //        //Nullable<bool> result = openFile.ShowDialog();
+
+        //        //if ((bool)result)
+        //        //{
 
 
-                    //open word documents in documents viewwr:
-                    //Microsoft.Office.Interop.Word.Application word = new Microsoft.Office.Interop.Word.Application();
-                    //string newXPSDocumentName = String.Concat(System.IO.Path.GetDirectoryName(openFile.FileName), "\\",
-                    //           System.IO.Path.GetFileNameWithoutExtension(openFile.FileName), ".xps");
-                    //DocText = ConvertWordDocToXPSDoc(openFile.FileName, newXPSDocumentName).GetFixedDocumentSequence();
+        //        // open pdf file in web browser:
+        //        string path = openFile.FileName;
+        //        pdfWebViewer.Navigate(new Uri("about:blank"));
+        //            pdfWebViewer.Navigate(path);
 
-                //}
-            }
-        }
+
+        //            //open word documents in documents viewwr:
+        //            //Microsoft.Office.Interop.Word.Application word = new Microsoft.Office.Interop.Word.Application();
+        //            //string newXPSDocumentName = String.Concat(System.IO.Path.GetDirectoryName(openFile.FileName), "\\",
+        //            //           System.IO.Path.GetFileNameWithoutExtension(openFile.FileName), ".xps");
+        //            //DocText = ConvertWordDocToXPSDoc(openFile.FileName, newXPSDocumentName).GetFixedDocumentSequence();
+
+        //        //}
+        //    }
+        //}
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
@@ -157,6 +121,34 @@ namespace SkpProject
         {
             
             
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            
+            //if(this.SearchStudentBox.SelectedIndex >0)
+            //{ 
+            //this.SearchStudentBox.Items.RemoveAt(this.SearchStudentBox.SelectedIndex);
+
+            //MessageBox.Show("Deleted Successfully!");
+            //}
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            //MessageBox.Show("hi");
+            //var selectedItem = SearchStudentBox.Items.Cast<CheckBox>().Where(x => x.IsChecked == true).Select(x => x.Content) ;
+
+            Student currentStudent = SearchStudentBox.SelectedItem as Student;
+            string filnavn = currentStudent.LastName;
+
+            OpenFileDialog openFile = new OpenFileDialog();
+            openFile.DefaultExt = ".pdf";
+            openFile.FileName = $"C:\\Users\\afba\\Desktop\\{filnavn}.pdf";
+            string path = openFile.FileName;
+            pdfWebViewer.Navigate(new Uri("about:blank"));
+            pdfWebViewer.Navigate(path);
+
         }
     }
 }

@@ -35,14 +35,16 @@
                         <Label FontSize="20"  >Søge elev :</Label>
                         <TextBox x:Name="SearchStudentTxt"   Width="150" Height="30" HorizontalAlignment="Stretch" Background="LightGray" TextChanged="SearchStudentTxt_TextChanged"   />
                             
-                          <ListBox x:Name="SearchStudentBox" Background="LightGray" Margin="20"  SelectionChanged="SearchStudentBox_SelectionChanged"   >
-                                
+                          <ListBox x:Name="SearchStudentBox" Background="LightGray" Margin="20"     >
+                                <!--SelectionChanged="SearchStudentBox_SelectionChanged"-->
                           <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                        <!--<CheckBox x:Name="checkedBox" Click="checkedBox_Click">-->
-                                            <TextBlock Text="{Binding FullInfo}"/>
-                                    <!--</CheckBox>-->
-                                </DataTemplate>
+                                        <ItemsControl ItemsSource="{Binding}">
+                                        <CheckBox x:Name="checkedBox"  Click="checkedBox_Click" Content="{Binding FullInfo}" IsChecked="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}} , Path=IsSelected}">
+                                            <!--<TextBlock Text="{Binding FullInfo}"/>-->
+                                    </CheckBox>
+                                        </ItemsControl>
+                                    </DataTemplate>
                           </ListBox.ItemTemplate>
                                
                           </ListBox>
@@ -62,8 +64,8 @@
 
                 <Border  Grid.Row="1">
                     <DockPanel HorizontalAlignment="Center" Margin="20" >
-                        <Button Margin="10" Width="150"  Height="50" Background="#3E454C" Foreground="White" FontSize="22" Name="btnGodkendt" Click="btnGodkendt_Click">GodKendt</Button>
-                    <Button Margin="10" Width="150" Background="#3E454C" Height="50" Foreground="White" FontSize="22" Name="btnSlet" Click="btnSlet_Click">Slet</Button>
+                        <Button Margin="10" Width="150"  Height="50" Background="#3E454C" Foreground="White" FontSize="22" Name="btnSave" Click="btnSave_Click">GodKendt</Button>
+                    <Button Margin="10" Width="150" Background="#3E454C" Height="50" Foreground="White" FontSize="22" Name="btnDelete" Click="btnDelete_Click">Slet</Button>
                     <Button   Margin="10" Width="150" Background="#3E454C" Height="50" Foreground="White" FontSize="22" Name="btnClose"  Click="btnClose_Click"   >Close</Button>
                 </DockPanel>
 
