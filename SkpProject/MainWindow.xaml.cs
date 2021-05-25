@@ -322,8 +322,8 @@ namespace SkpProject
             Data _data = new Data();
            // _data.CreateStudentsData();
             _data.GetStudents();
-            Student stu = new Student();
-            stu.CalculateAge();
+            //Student stu = new Student();
+            //stu.CalculateAge();
             List<Student> GetStudents = _data.students.Where(student => (student.FirstName.ToLower()).StartsWith(text.ToLower()) || student.LastName.ToLower().StartsWith(text.ToLower())).ToList();
             //List<Student> GetStudents = Data.students.Where(student => (student.FirstName).StartsWith(text)).ToList();
             SearchStudentBox.ItemsSource = GetStudents;
@@ -334,10 +334,12 @@ namespace SkpProject
         {
             if(SearchStudentBox.SelectedIndex >= 0)
             {
-                Student stu = new Student();
-                stu.CalculateAge();
+                //Student stu = new Student();
+                //stu.CalculateAge();
                 currentStudent = SearchStudentBox.SelectedItem as Student;
                 StudentsFullInfo.Content = currentStudent.FullInfo;
+                string StrCurrentCprNr = SearchStudentBox.SelectedItem.ToString();
+                ViseAlder.Text = CalculateAge(StrCurrentCprNr);
             }
         }
 
@@ -347,25 +349,7 @@ namespace SkpProject
             
         }
 
-        
-        private void DateTimePiker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
-        {
-            
-            var today = DateTime.Today;
-            var age = today.Year - DateTimePiker.SelectedDate.Value.Year;
-            //if(DateTimePiker.SelectedDate.Value.Date) > today.AddYears(-age)) age--;
-            ShowAge.Text = Convert.ToString(age);
-        }
-
-        
-
-        private void regneAge_Click(object sender, RoutedEventArgs e)
-        {
-            Student stu = new Student();
-            stu.CalculateAge();
-            
-        }
-
+    
         private void btnOpenPdfFile_Click(object sender, RoutedEventArgs e)
         {
             //this.Hide();
@@ -418,6 +402,79 @@ namespace SkpProject
         private void btnClose_Click_1(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void DateTimePiker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            var today = DateTime.Today;
+            var age = today.Year - DateTimePiker.SelectedDate.Value.Year;
+            //if(DateTimePiker.SelectedDate.Value.Date) > today.AddYears(-age)) age--;
+            ShowAge.Text = Convert.ToString(age);
+        }
+
+        public string CalculateAge(string CPRNR)
+        {
+
+            DateTime dtToday = DateTime.Today;
+             //CPRNR = "2005204525";
+
+            //int value = Convert.ToInt32(CPRNrTxt.Text);
+            //string strBirthDate = CPRNrTxt.Text.Substring(0, 6);
+            string strBirthDate = CPRNR.Substring(0, 6);
+
+
+            string strDD = strBirthDate.Substring(0, 2);
+            string strMM = strBirthDate.Substring(2, 2);
+            string strYY = strBirthDate.Substring(4, 2);
+            int intYY = Convert.ToInt32(strYY);
+            string strYYYY;
+            if (intYY < 30)
+            {
+
+                strYYYY = "20" + strYY;
+
+
+            }
+
+            else
+            {
+                strYYYY = "19" + strYY;
+            }
+
+            string strAllBirth = strDD + "/" + strMM + "/" + strYYYY;
+
+            DateTime dtBirthDate = Convert.ToDateTime(strAllBirth);
+            int years = dtToday.Year - dtBirthDate.Year;
+            if (dtToday.Month < dtBirthDate.Month || (dtToday.Month == dtBirthDate.Month && dtToday.Day < dtBirthDate.Day))
+                years = years - 1;
+
+            int intStudentAge = years;
+            return intStudentAge.ToString();
+
+        }
+
+        private void CPRNrTxt_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            //Student _student = new Student();
+            //_student.CalculateAge();
+            //string StrCurrentCprNr = CPRNrTxt.Text.Trim();
+            //int intStrCurrentCprNr = Convert.ToInt32(StrCurrentCprNr);
+            //ViseAlder.Text = Convert.ToString(CalculateAge(intStrCurrentCprNr));
+        }
+
+       
+
+        private void calculateAge_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void calculateAgeFromTextBox_Click(object sender, RoutedEventArgs e)
+        {
+            //string StrCurrentCprNr = CPRNrTxt.Text.Trim();
+            string StrCurrentCprNr = SearchStudentBox.SelectedItem.ToString();
+            ViseAlder.Text = CalculateAge(StrCurrentCprNr);
         }
     }
 

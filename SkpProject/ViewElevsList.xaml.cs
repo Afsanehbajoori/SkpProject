@@ -60,6 +60,30 @@ namespace SkpProject
 
         private void btnGodkendt_Click(object sender, RoutedEventArgs e)
         {
+            //MessageBox.Show("hi");
+            //var selectedItem = SearchStudentBox.Items.Cast<CheckBox>().Where(x => x.IsChecked == true).Select(x => x.Content) ;
+
+
+
+
+            //foreach (CheckBox item in SearchStudentBox.Items)
+            //{
+            //    if (item.IsChecked == true)
+            //    {
+            //       Student currentStudent = SearchStudentBox.SelectedItem as Student ;
+            //        string filnavn = currentStudent.LastName;
+
+            //        OpenFileDialog openFile = new OpenFileDialog();
+            //        openFile.DefaultExt = ".pdf";
+            //        openFile.FileName = $"C:\\Users\\afba\\Desktop\\{filnavn}.pdf";
+            //        string path = openFile.FileName;
+            //        pdfWebViewer.Navigate(new Uri("about:blank"));
+            //        pdfWebViewer.Navigate(path);
+
+            //    }
+
+            //}
+
 
         }
 
@@ -96,7 +120,9 @@ namespace SkpProject
 
                 //openFile.DefaultExt = ".docx";
                 //openFile.Filter= ".Docx Files (*.docx)|*.docx";
-                string newXPSDocName = String.Concat(System.IO.Path.GetDirectoryName(openFile.FileName), "\\", System.IO.Path.GetFileNameWithoutExtension(openFile.FileName), ".pdf");
+
+                //open pdf file in the program
+               // string newXPSDocName = String.Concat(System.IO.Path.GetDirectoryName(openFile.FileName), "\\", System.IO.Path.GetFileNameWithoutExtension(openFile.FileName), ".pdf");
                 //PDF_Placeholder.Document = ConvertWordDocToXPSDoc(pdffile.FileName, newXPSDocName).GetFixedDocumentSequence();
 
 
@@ -125,6 +151,12 @@ namespace SkpProject
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void checkedBox_Click(object sender, RoutedEventArgs e)
+        {
+            
+            
         }
     }
 }

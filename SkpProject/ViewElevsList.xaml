@@ -34,16 +34,20 @@
                     <StackPanel>
                         <Label FontSize="20"  >Søge elev :</Label>
                         <TextBox x:Name="SearchStudentTxt"   Width="150" Height="30" HorizontalAlignment="Stretch" Background="LightGray" TextChanged="SearchStudentTxt_TextChanged"   />
-                        <ListBox x:Name="SearchStudentBox" Background="LightGray" Margin="20"  SelectionChanged="SearchStudentBox_SelectionChanged"   >
-                            <ListBox.ItemTemplate>
+                            
+                          <ListBox x:Name="SearchStudentBox" Background="LightGray" Margin="20"  SelectionChanged="SearchStudentBox_SelectionChanged"   >
+                                
+                          <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding FullInfo}"/>
-                                        
-                                    </DataTemplate>
-                            </ListBox.ItemTemplate>
-
-                        </ListBox>
-                        <!--web browser to open pdf file:-->
+                                        <!--<CheckBox x:Name="checkedBox" Click="checkedBox_Click">-->
+                                            <TextBlock Text="{Binding FullInfo}"/>
+                                    <!--</CheckBox>-->
+                                </DataTemplate>
+                          </ListBox.ItemTemplate>
+                               
+                          </ListBox>
+                            
+                            <!--web browser to open pdf file:-->
                             <WebBrowser x:Name="pdfWebViewer" ></WebBrowser>
                         
                         

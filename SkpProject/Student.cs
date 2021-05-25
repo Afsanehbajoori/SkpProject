@@ -66,7 +66,7 @@ namespace SkpProject
 
         public override string ToString()
         {
-            return $"{CPRNR} - {lastName}, {firstName} ";
+            return $"{CPRNR} - {lastName}, {firstName}. ";
         }
 
         //public string IntStudentAge
@@ -108,44 +108,6 @@ namespace SkpProject
         //}
 
 
-        public string CalculateAge()
-        {
-                        
-            DateTime dtToday = DateTime.Today;
-            string cprNr = "2005204525";
-
-            string strBirthDate = cprNr.Substring(0, 6);
-
-
-            string strDD = strBirthDate.Substring(0, 2);
-            string strMM = strBirthDate.Substring(2, 2);
-            string strYY = strBirthDate.Substring(4, 2);
-            int intYY = Convert.ToInt32(strYY);
-            string strYYYY;
-            if (intYY < 30)
-            {
-               
-                 strYYYY = "20" + strYY;
-                
-                
-            }
-           
-            else 
-            {
-                strYYYY = "19" + strYY;
-            }
-
-            string strAllBirth = strDD + "/" + strMM + "/" + strYYYY;
-
-            DateTime dtBirthDate = Convert.ToDateTime(strAllBirth);
-            int years = dtToday.Year - dtBirthDate.Year;
-            if (dtToday.Month < dtBirthDate.Month || (dtToday.Month == dtBirthDate.Month && dtToday.Day < dtBirthDate.Day))
-                years = years - 1;
-
-            int intStudentAge = years;
-            return intStudentAge.ToString();
-
-        }
-
+       
     }
 }

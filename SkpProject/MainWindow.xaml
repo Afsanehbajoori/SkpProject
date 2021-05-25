@@ -146,10 +146,12 @@
 
                             </ListBox>
 
-
+                            <WrapPanel>
                             <!--<Label FontSize="20"   Content="Ekstra Information:" />-->
                             <Label FontSize="20"  Content="" Name="StudentsFullInfo" />
-
+                                <Label FontSize="20" Content="Alderen er :"/>
+                                <TextBlock x:Name="ViseAlder" FontSize="19" HorizontalAlignment="left" Height="20" Width="30"  />
+                            </WrapPanel>
 
                         </StackPanel>
                     </ScrollViewer>
@@ -170,6 +172,12 @@
 
                             <DatePicker Width="150" HorizontalAlignment="Left" Name="DateTimePiker" SelectedDateChanged="DateTimePiker_SelectedDateChanged"></DatePicker>
                             <TextBlock x:Name="ShowAge" HorizontalAlignment="left" Height="20" Width="30" FontSize="10" />
+                            <DockPanel>
+                                
+                            <!--<TextBox x:Name="CPRNrTxt" Height="30" Width="150" HorizontalAlignment="Left" Background="LightGray"   />
+                                <Button x:Name="calculateAgeFromTextBox" Click="calculateAgeFromTextBox_Click">Regne Aldre</Button>-->
+                                <!--<TextBlock x:Name="ViseAlder" HorizontalAlignment="left" Height="20" Width="30" FontSize="10" />-->
+                            </DockPanel>
                             <RadioButton ClickMode="Press" GroupName="age"   >Over 25</RadioButton>
                             <RadioButton ClickMode="Press" GroupName="age"  >Under 25</RadioButton>
 
@@ -192,9 +200,9 @@
 
                             <Label  Grid.Column="0" Grid.Row="7" FontWeight="Bold" Content="Vælg en item:" />
                             <ComboBox Background="LightGray" Height="20" Width="200" HorizontalAlignment="Left" Name="ComboboxValidation">
-                                <ComboBoxItem >ComboBox Item #1</ComboBoxItem>
-                                <ComboBoxItem >ComboBox Item #2</ComboBoxItem>
-                                <ComboBoxItem>ComboBox Item #3</ComboBoxItem>
+                                <ComboBoxItem >It-support</ComboBoxItem>
+                                <ComboBoxItem >Programmering</ComboBoxItem>
+                                <ComboBoxItem>Infrastruktur</ComboBoxItem>
                             </ComboBox>
 
                             <Label   Grid.Column="0" Grid.Row="7" FontWeight="Bold">Notification:</Label>
@@ -313,8 +321,8 @@
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Column="0" Grid.Row="0" Text="Username" FontSize="30"  Height="64"    />
-                <TextBox x:Name="usernameText" Grid.Row="0" Background="#eee"  Height="52" Grid.ColumnSpan="3" Margin="198,6,269,6" />
+                <!--<TextBlock Grid.Column="0" Grid.Row="0" Text="Username" FontSize="30"  Height="64"    />
+                <TextBox x:Name="usernameText" Grid.Row="0" Background="#eee"  Height="52" Grid.ColumnSpan="3" Margin="198,6,269,6" />-->
 
 
 
