@@ -21,9 +21,9 @@
         <Border Grid.Column="0" Margin="2" Background="WhiteSmoke" Width="250" HorizontalAlignment="Center" BorderThickness="2" BorderBrush="Gray">
 
             <StackPanel>
-                <Button Margin="20,30" Background="#3E454C" Height="50" Foreground="White" FontSize="22" Name="btnHome" Click="btnHome_Click" >Home</Button>
-                <Button Margin="20,30" Background="#3E454C" Height="50" Foreground="White" FontSize="22" Name="btnUnderviser" Click="btnUnderviser_Click" >Underviser</Button>
-                <Button Margin="20,30" Background="#3E454C" Height="50" Foreground="White" FontSize="22" Name="btnLeder" Click="btnLeder_Click" >Leder</Button>
+                <Button Margin="20,30" Background="Gray" Height="50" Foreground="White" FontSize="22" Name="btnHome" Click="btnHome_Click" >Home</Button>
+                <Button Margin="20,30" Background="Gray" Height="50" Foreground="White" FontSize="22" Name="btnUnderviser" Click="btnUnderviser_Click" >Underviser</Button>
+                <Button Margin="20,30" Background="Gray" Height="50" Foreground="White" FontSize="22" Name="btnLeder" Click="btnLeder_Click" >Leder</Button>
                 <Image Margin="10,200" Height="150" Width="200" Source="Resources/TECLOGO.png" />
 
             </StackPanel>
@@ -31,7 +31,7 @@
         </Border>
 
         <Border Grid.Column="1" Margin="2" Background="WhiteSmoke" Name="HomePanel" HorizontalAlignment="Stretch" BorderThickness="2" BorderBrush="Gray" Visibility="Collapsed">
-            <StackPanel HorizontalAlignment="Stretch" Background="LightGray" RenderTransformOrigin="0.38,0.595"  >
+            <StackPanel HorizontalAlignment="Stretch" Background="WhiteSmoke" RenderTransformOrigin="0.38,0.595"  >
                 <Label FontSize="54" FontWeight="Heavy" HorizontalAlignment="Center" FontFamily="Times New Roman" Margin="0,50,0,0" >Velkommen til TEC App</Label>
                 <fa:ImageAwesome Icon="Spinner"  SpinDuration="50" Spin="true" Width="191"  Height="196" Margin="150"/>
 
@@ -43,7 +43,7 @@
 
 
 
-        <Border Grid.Column="1" Background="LightGray" Name="UnderviserPanel" BorderThickness="2" BorderBrush="Gray" Visibility="Visible">
+        <Border Grid.Column="1" Background="WhiteSmoke" Name="UnderviserPanel" BorderThickness="2" BorderBrush="Gray" Visibility="Visible">
 
             <Grid>
 
@@ -132,12 +132,14 @@
 
                         <Label FontSize="20"  Margin="20" Grid.Column="0" Grid.Row="3" Content="Ekstra Information:" />
                         <Label FontSize="20" Grid.Column="1" Grid.Row="3" Margin="20" Content="" Name="StudentsFullInfo" />-->
-                <Border Grid.Row="0" BorderBrush="Gray" BorderThickness="1">
+                <Border Grid.Row="0" BorderBrush="Gray" BorderThickness="0">
                     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                         <StackPanel>
-                            <Label FontSize="20"  >Søge elev :</Label>
-                            <TextBox x:Name="SearchStudentTxt"   Width="150" Height="30"  Background="LightGray" TextChanged="SearchStudentTxt_TextChanged"  />
-                            <ListBox x:Name="SearchStudentBox" Background="LightGray" Margin="20"   SelectionChanged="SearchStudentBox_SelectionChanged" >
+                            <WrapPanel>
+                                <Label FontSize="20"  >Søge elev :</Label>
+                                <TextBox x:Name="SearchStudentTxt"  Margin="10" Width="300" Height="30"  Background="WhiteSmoke" TextChanged="SearchStudentTxt_TextChanged"  />
+                            </WrapPanel>
+                            <ListBox x:Name="SearchStudentBox" Background="WhiteSmoke" Margin="20"  SelectionChanged="SearchStudentBox_SelectionChanged" >
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding FullInfo}"/>
@@ -147,8 +149,8 @@
                             </ListBox>
 
                             <WrapPanel>
-                            <!--<Label FontSize="20"   Content="Ekstra Information:" />-->
-                            <Label FontSize="20"  Content="" Name="StudentsFullInfo" />
+                                <!--<Label FontSize="20"   Content="Ekstra Information:" />-->
+                                <Label FontSize="20"  Content="" Name="StudentsFullInfo" />
                                 <Label FontSize="20" Content="Alderen er :"/>
                                 <TextBlock x:Name="ViseAlder" FontSize="19" HorizontalAlignment="left" Height="20" Width="30"  />
                             </WrapPanel>
@@ -164,17 +166,17 @@
 
 
                 <Border  Grid.Row="1">
-                    
+
                     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" >
-                        
+
 
                         <StackPanel Margin="10"  Grid.Column="0" Grid.Row="4"   x:Name="radioButtonValidation" >
 
-                            <DatePicker Width="150" HorizontalAlignment="Left" Name="DateTimePiker" SelectedDateChanged="DateTimePiker_SelectedDateChanged"></DatePicker>
-                            <TextBlock x:Name="ShowAge" HorizontalAlignment="left" Height="20" Width="30" FontSize="10" />
+                            <!--<DatePicker Width="150" HorizontalAlignment="Left" Name="DateTimePiker" SelectedDateChanged="DateTimePiker_SelectedDateChanged"></DatePicker>
+                            <TextBlock x:Name="ShowAge" HorizontalAlignment="left" Height="20" Width="30" FontSize="10" />-->
                             <DockPanel>
-                                
-                            <!--<TextBox x:Name="CPRNrTxt" Height="30" Width="150" HorizontalAlignment="Left" Background="LightGray"   />
+
+                                <!--<TextBox x:Name="CPRNrTxt" Height="30" Width="150" HorizontalAlignment="Left" Background="LightGray"   />
                                 <Button x:Name="calculateAgeFromTextBox" Click="calculateAgeFromTextBox_Click">Regne Aldre</Button>-->
                                 <!--<TextBlock x:Name="ViseAlder" HorizontalAlignment="left" Height="20" Width="30" FontSize="10" />-->
                             </DockPanel>
@@ -199,26 +201,26 @@
 
 
                             <Label  Grid.Column="0" Grid.Row="7" FontWeight="Bold" Content="Vælg en item:" />
-                            <ComboBox Background="LightGray" Height="20" Width="200" HorizontalAlignment="Left" Name="ComboboxValidation">
+                            <ComboBox Background="WhiteSmoke" Height="20" Width="200" HorizontalAlignment="Left" Name="ComboboxValidation">
                                 <ComboBoxItem >It-support</ComboBoxItem>
                                 <ComboBoxItem >Programmering</ComboBoxItem>
                                 <ComboBoxItem>Infrastruktur</ComboBoxItem>
                             </ComboBox>
 
                             <Label   Grid.Column="0" Grid.Row="7" FontWeight="Bold">Notification:</Label>
-                            <TextBox Background="LightGray"  x:Name="MultiLineTxt" Width="150" Height="50" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible"  HorizontalAlignment="Left"/>
+                            <TextBox Background="WhiteSmoke"  x:Name="MultiLineTxt" Width="150" Height="50" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible"  HorizontalAlignment="Left"/>
 
 
 
-                            <DockPanel HorizontalAlignment="Center" Margin="20" >
-                                <Button  Background="#3E454C" Margin="10" Width="150"  Height="50" Foreground="White" FontSize="22" Name="btnSave"  Click="btnSave_Click"   HorizontalAlignment="Center" >Gem</Button>
+                            <DockPanel HorizontalAlignment="Center"  >
+                                <Button  Background="Gray" Margin="20" Width="150"  Height="50" Foreground="White" FontSize="22" Name="btnSave"  Click="btnSave_Click"   HorizontalAlignment="Center" >Gem</Button>
 
-                                <Button  Background="#3E454C" Foreground="White" FontSize="22" Name="btnClose"  Click="btnClose_Click_1"  Margin="10" Width="150"  Height="50" HorizontalAlignment="Center" >Close</Button>
+                                <Button  Background="Gray" Foreground="White" FontSize="22" Name="btnClose"  Click="btnClose_Click_1"  Margin="20" Width="150"  Height="50" HorizontalAlignment="Center" >Close</Button>
                                 <!--<TextBox Height="30" Name="txtOpenPdfFile" Width="550" Margin="10,0,10,0" FontSize="15" Opacity="1" />-->
-                                <Button x:Name="btnOpenPdfFile" Click="btnOpenPdfFile_Click" Margin="10" Width="150"  Height="50" HorizontalAlignment="Center" Foreground="White" FontSize="22" Background="#3E454C">Open PDF File</Button>
-                                <WebBrowser x:Name="pdfWebViewer" ></WebBrowser>
+                                <Button x:Name="btnOpenPdfFile" Click="btnOpenPdfFile_Click" Margin="20" Width="150"  Height="50" HorizontalAlignment="Center" Foreground="White" FontSize="22" Background="Gray">Open PDF File</Button>
+                                <WebBrowser x:Name="pdfWebViewer" Width="0" Height="0" ></WebBrowser>
 
-                               
+
                             </DockPanel>
                         </StackPanel>
                     </ScrollViewer>
@@ -260,53 +262,7 @@
 
         <!--</Grid>-->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <Border Grid.Column="1" Margin="2" Background="LightGray" Name="LederPanel" HorizontalAlignment="Stretch" BorderThickness="2" BorderBrush="Gray" Visibility="Collapsed">
+        <Border Grid.Column="1" Margin="2" Background="WhiteSmoke" Name="LederPanel" HorizontalAlignment="Stretch" BorderThickness="2" BorderBrush="Gray" Visibility="Collapsed">
 
             <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Grid.ColumnDefinitions>
@@ -327,10 +283,10 @@
 
 
 
-                <TextBlock Grid.Column="0" Grid.Row="1" Text="Password" FontSize="30" Height="64" Margin="10,0,260,0" Grid.ColumnSpan="2"   />
-                <PasswordBox  PasswordChar="*" x:Name="passwordText" Grid.Row="1" Height="52" Background="#eee" Grid.ColumnSpan="3" Margin="198,6,269,6" />
+                <TextBlock Grid.Column="0" Grid.Row="0" Text="Password :" FontSize="30" Height="64"  Grid.ColumnSpan="2"   />
+                <PasswordBox  PasswordChar="*" x:Name="passwordText" Grid.Column="1" Grid.Row="1" Height="64" Width="300" Background="#eee" Margin="10" />
 
-                <Button x:Name="signinButton"  Background="#3E454C" Content="Sign In" FontSize="30" Foreground="White" Margin="20" Click="signinButton_Click"  Grid.Column="2"  Grid.Row="2"   Height="64" Width="229"   />
+                <Button x:Name="signinButton"  Background="Gray" Content="Sign In" Margin="10" FontSize="30" Foreground="White"  Click="signinButton_Click"  Grid.Column="1"  Grid.Row="2"   Height="64" Width="300"    />
             </Grid>
 
 

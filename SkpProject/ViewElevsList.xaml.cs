@@ -47,6 +47,10 @@ namespace SkpProject
 
 
         public Student currentStudent { get; set; } = new Student();
+        public Dictionary<string, string> fileDictionary = new Dictionary<string, string>();
+
+
+
         public ViewElevsList()
         {
             InitializeComponent();
@@ -125,13 +129,14 @@ namespace SkpProject
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            
-            //if(this.SearchStudentBox.SelectedIndex >0)
-            //{ 
-            //this.SearchStudentBox.Items.RemoveAt(this.SearchStudentBox.SelectedIndex);
 
-            //MessageBox.Show("Deleted Successfully!");
-            //}
+
+            //fileDictionary.Remove(item.ToString());
+            SearchStudentBox.Items.Remove(SearchStudentBox.SelectedItem);
+
+
+
+            
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
@@ -148,6 +153,9 @@ namespace SkpProject
             string path = openFile.FileName;
             pdfWebViewer.Navigate(new Uri("about:blank"));
             pdfWebViewer.Navigate(path);
+
+            //fileDictionary.Add(filnavn, path);
+            //SearchStudentBox.Items.Add(filnavn);
 
         }
     }

@@ -34,45 +34,29 @@ namespace SkpProject
             {
                 CPRNR = "2005994869",
                 FirstName = "Alfa ",
-                LastName = "Hansen"
+                LastName = "Nilsen"
 
             });
 
             students.Add(new Student()
             {
-                CPRNR = "2009884869",
-                FirstName = "Alfa ",
-                LastName = "Hansen"
+                CPRNR = "2005884869",
+                FirstName = "Oscar ",
+                LastName = "Petersen"
 
             });
+
             students.Add(new Student()
             {
-                CPRNR = "2009884869",
-                FirstName = "Alfa ",
-                LastName = "Hansen"
+                CPRNR = "2005784869",
+                FirstName = "Alfred ",
+                LastName = "Larsen"
 
             });
-            students.Add(new Student()
-            {
-                CPRNR = "2009884869",
-                FirstName = "Alfa ",
-                LastName = "Hansen"
 
-            });
-            students.Add(new Student()
-            {
-                CPRNR = "2005994869",
-                FirstName = "Alfa ",
-                LastName = "Hansen"
 
-            });
-            students.Add(new Student()
-            {
-                CPRNR = "2009884869",
-                FirstName = "Alfa ",
-                LastName = "Hansen"
 
-            });
+
 
         }
 

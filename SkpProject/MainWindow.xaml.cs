@@ -42,7 +42,7 @@ namespace SkpProject
         //public Elev currentElev { get; set; } = new Elev();
 
         public Student currentStudent { get; set; } = new Student();
-
+        public Dictionary<string, string> fileDictionary = new Dictionary<string, string>();
 
 
         public MainWindow()
@@ -343,11 +343,11 @@ namespace SkpProject
             }
         }
 
-        private void calculateAge_Click(object sender, RoutedEventArgs e)
-        {
+        //private void calculateAge_Click(object sender, RoutedEventArgs e)
+        //{
             
             
-        }
+        //}
 
     
         private void btnOpenPdfFile_Click(object sender, RoutedEventArgs e)
@@ -356,8 +356,11 @@ namespace SkpProject
             ////fileWatch();
             //OpenPdfFile openPdfFile = new OpenPdfFile();
             //openPdfFile.Show();
+            Student currentStudent = SearchStudentBox.SelectedItem as Student;
+            string filnavn = currentStudent.LastName;
             OpenFileDialog openFile = new OpenFileDialog();
             openFile.Filter = "PDF |*.pdf";
+            var fileName= openFile.FileName = $"C:\\Users\\afba\\Desktop\\{filnavn}.pdf";
             Nullable<bool> result = openFile.ShowDialog();
 
             if ((bool)result)
@@ -365,8 +368,16 @@ namespace SkpProject
                 string path = openFile.FileName;
                 pdfWebViewer.Navigate(new Uri("about:blank"));
                 pdfWebViewer.Navigate(path);
+
+
+
+                //fileDictionary.Add(filnavn, path);
+                //SearchStudentBox.Items.Add(filnavn);
+                
             }
         }
+
+
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
@@ -404,14 +415,14 @@ namespace SkpProject
             this.Close();
         }
 
-        private void DateTimePiker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
-        {
+        //private void DateTimePiker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        //{
 
-            var today = DateTime.Today;
-            var age = today.Year - DateTimePiker.SelectedDate.Value.Year;
-            //if(DateTimePiker.SelectedDate.Value.Date) > today.AddYears(-age)) age--;
-            ShowAge.Text = Convert.ToString(age);
-        }
+        //    var today = DateTime.Today;
+        //    var age = today.Year - DateTimePiker.SelectedDate.Value.Year;
+        //    //if(DateTimePiker.SelectedDate.Value.Date) > today.AddYears(-age)) age--;
+        //    ShowAge.Text = Convert.ToString(age);
+        //}
 
         public string CalculateAge(string CPRNR)
         {
@@ -465,10 +476,10 @@ namespace SkpProject
 
        
 
-        private void calculateAge_Click_1(object sender, RoutedEventArgs e)
-        {
+        //private void calculateAge_Click_1(object sender, RoutedEventArgs e)
+        //{
 
-        }
+        //}
 
         private void calculateAgeFromTextBox_Click(object sender, RoutedEventArgs e)
         {
