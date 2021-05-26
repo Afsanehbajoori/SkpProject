@@ -174,13 +174,39 @@ namespace SkpProject
             else
             {
                 MessageBox.Show("Er du sikker?");
-                
+                chooseEUV1Programmering();
+
                 clear();
+                
             }
+   
+
+        }
 
 
-           
+        public void chooseEUV1Programmering()
+        {
+            if(over25.IsChecked == true && radioYes.IsChecked== true && experienceYes.IsChecked ==true && Programmering.IsSelected)
+            {
+                
+                OpenFileDialog openFile = new OpenFileDialog();
+                openFile.Filter = "PDF |*.pdf";
+                openFile.FileName = $"C:\\Users\\afba\\Desktop\\EUV1Programmering";
+                Nullable<bool> result = openFile.ShowDialog();
 
+                if ((bool)result)
+                {
+                    string path = openFile.FileName;
+                    pdfWebViewer.Navigate(new Uri("about:blank"));
+                    pdfWebViewer.Navigate(path);
+
+
+
+                    //fileDictionary.Add(filnavn, path);
+                    //SearchStudentBox.Items.Add(filnavn);
+
+                }
+            }
         }
 
         public void clear()

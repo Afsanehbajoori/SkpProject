@@ -180,8 +180,8 @@
                                 <Button x:Name="calculateAgeFromTextBox" Click="calculateAgeFromTextBox_Click">Regne Aldre</Button>-->
                                 <!--<TextBlock x:Name="ViseAlder" HorizontalAlignment="left" Height="20" Width="30" FontSize="10" />-->
                             </DockPanel>
-                            <RadioButton ClickMode="Press" GroupName="age"   >Over 25</RadioButton>
-                            <RadioButton ClickMode="Press" GroupName="age"  >Under 25</RadioButton>
+                            <RadioButton ClickMode="Press" GroupName="age" x:Name="over25"  >Over 25</RadioButton>
+                            <RadioButton ClickMode="Press" GroupName="age" x:Name="under25"  >Under 25</RadioButton>
 
 
 
@@ -195,16 +195,16 @@
 
                             <Label FontWeight="Bold" x:Name="radioButtonErfaringValidation"  >Har du nogle erfaring?</Label>
 
-                            <RadioButton ClickMode="Press" GroupName="erfaring"   >Ja</RadioButton>
-                            <RadioButton ClickMode="Press" GroupName="erfaring"  >Nej</RadioButton>
-                            <RadioButton ClickMode="Press" GroupName="erfaring"  >Måske</RadioButton>
+                            <RadioButton ClickMode="Press" GroupName="experience" x:Name="experienceYes"  >Ja</RadioButton>
+                            <RadioButton ClickMode="Press" GroupName="experience" x:Name="experienceNo" >Nej</RadioButton>
+                            <RadioButton ClickMode="Press" GroupName="experience" x:Name="experienceMaybe" >Måske</RadioButton>
 
 
                             <Label  Grid.Column="0" Grid.Row="7" FontWeight="Bold" Content="Vælg en item:" />
                             <ComboBox Background="WhiteSmoke" Height="20" Width="200" HorizontalAlignment="Left" Name="ComboboxValidation">
-                                <ComboBoxItem >It-support</ComboBoxItem>
-                                <ComboBoxItem >Programmering</ComboBoxItem>
-                                <ComboBoxItem>Infrastruktur</ComboBoxItem>
+                                <ComboBoxItem x:Name="ItSupport">It-support</ComboBoxItem>
+                                <ComboBoxItem x:Name="Programmering" >Programmering</ComboBoxItem>
+                                <ComboBoxItem x:Name="Infrastruktur">Infrastruktur</ComboBoxItem>
                             </ComboBox>
 
                             <Label   Grid.Column="0" Grid.Row="7" FontWeight="Bold">Notification:</Label>
@@ -214,10 +214,10 @@
 
                             <DockPanel HorizontalAlignment="Center"  >
                                 <Button  Background="Gray" Margin="20" Width="150"  Height="50" Foreground="White" FontSize="22" Name="btnSave"  Click="btnSave_Click"   HorizontalAlignment="Center" >Gem</Button>
-
+                                <Button x:Name="btnOpenPdfFile" Click="btnOpenPdfFile_Click" Margin="20" Width="150"  Height="50" HorizontalAlignment="Center" Foreground="White" FontSize="22" Background="Gray">Open PDF File</Button>
                                 <Button  Background="Gray" Foreground="White" FontSize="22" Name="btnClose"  Click="btnClose_Click_1"  Margin="20" Width="150"  Height="50" HorizontalAlignment="Center" >Close</Button>
                                 <!--<TextBox Height="30" Name="txtOpenPdfFile" Width="550" Margin="10,0,10,0" FontSize="15" Opacity="1" />-->
-                                <Button x:Name="btnOpenPdfFile" Click="btnOpenPdfFile_Click" Margin="20" Width="150"  Height="50" HorizontalAlignment="Center" Foreground="White" FontSize="22" Background="Gray">Open PDF File</Button>
+                               
                                 <WebBrowser x:Name="pdfWebViewer" Width="0" Height="0" ></WebBrowser>
 
 
