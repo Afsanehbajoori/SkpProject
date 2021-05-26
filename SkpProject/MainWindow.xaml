@@ -188,9 +188,9 @@
 
                             <Label FontWeight="Bold" >Har du 9 klasse?</Label>
 
-                            <RadioButton ClickMode="Press" GroupName="RadioClass"  x:Name="radioYes"  >Ja</RadioButton>
-                            <RadioButton ClickMode="Press" GroupName="RadioClass"   x:Name="radioNo">Nej</RadioButton>
-                            <RadioButton ClickMode="Press" GroupName="RadioClass"   x:Name="radioMaybe" >Måske</RadioButton>
+                            <RadioButton ClickMode="Press" GroupName="RadioClass"  x:Name="NineClassYes"  >Ja</RadioButton>
+                            <RadioButton ClickMode="Press" GroupName="RadioClass"   x:Name="NineClassNo">Nej</RadioButton>
+                            <RadioButton ClickMode="Press" GroupName="RadioClass"   x:Name="NineClassMaybe" >Måske</RadioButton>
 
 
                             <Label FontWeight="Bold" x:Name="radioButtonErfaringValidation"  >Har du nogle erfaring?</Label>
@@ -214,7 +214,7 @@
 
                             <DockPanel HorizontalAlignment="Center"  >
                                 <Button  Background="Gray" Margin="20" Width="150"  Height="50" Foreground="White" FontSize="22" Name="btnSave"  Click="btnSave_Click"   HorizontalAlignment="Center" >Gem</Button>
-                                <Button x:Name="btnOpenPdfFile" Click="btnOpenPdfFile_Click" Margin="20" Width="150"  Height="50" HorizontalAlignment="Center" Foreground="White" FontSize="22" Background="Gray">Open PDF File</Button>
+                                <!--<Button x:Name="btnOpenPdfFile" Click="btnOpenPdfFile_Click" Margin="20" Width="150"  Height="50" HorizontalAlignment="Center" Foreground="White" FontSize="22" Background="Gray">Open PDF File</Button>-->
                                 <Button  Background="Gray" Foreground="White" FontSize="22" Name="btnClose"  Click="btnClose_Click_1"  Margin="20" Width="150"  Height="50" HorizontalAlignment="Center" >Close</Button>
                                 <!--<TextBox Height="30" Name="txtOpenPdfFile" Width="550" Margin="10,0,10,0" FontSize="15" Opacity="1" />-->
                                

@@ -6,7 +6,7 @@ namespace SkpProject
 {
     public class Student
     {
-
+      
         private string cprNr = string.Empty;
         private string firstName = string.Empty;
         private string lastName = string.Empty;

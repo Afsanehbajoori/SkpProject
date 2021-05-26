@@ -25,6 +25,8 @@ using Excel = Microsoft.Office.Interop.Excel;
 using ClosedXML.Excel;
 using SkpProject;
 
+using Spire.Pdf.General.Find;
+using Spire.Pdf;
 
 namespace SkpProject
 {
@@ -145,101 +147,7 @@ namespace SkpProject
             UnderviserPanel.Visibility = Visibility.Collapsed;
         }
 
-        private void btnSave_Click(object sender, RoutedEventArgs e)
-        {
-           
-            bool isValid = true;
-            bool isValid2 = true;
-            //isValid2 = validationOfErfaring();
-            isValid = validationRadioButtonMethod();
-           
-            if (!isValid)
-
-            {
-                MessageBox.Show("Du skal udfylde alle felter!");
-                this.Focus();
-            }
-
-            else if(!isValid2)
-            {
-                MessageBox.Show("Du skal udfylde alle felter!");
-                this.Focus();
-            }
-            
-            else if(ComboboxValidation.SelectedIndex <0)
-            {
-                MessageBox.Show("Du skal udfylde alle felter!");
-                this.Focus();
-            }
-            else
-            {
-                MessageBox.Show("Er du sikker?");
-                chooseEUV1Programmering();
-
-                clear();
-                
-            }
-   
-
-        }
-
-
-        public void chooseEUV1Programmering()
-        {
-            if(over25.IsChecked == true && radioYes.IsChecked== true && experienceYes.IsChecked ==true && Programmering.IsSelected)
-            {
-                
-                OpenFileDialog openFile = new OpenFileDialog();
-                openFile.Filter = "PDF |*.pdf";
-                openFile.FileName = $"C:\\Users\\afba\\Desktop\\EUV1Programmering";
-                Nullable<bool> result = openFile.ShowDialog();
-
-                if ((bool)result)
-                {
-                    string path = openFile.FileName;
-                    pdfWebViewer.Navigate(new Uri("about:blank"));
-                    pdfWebViewer.Navigate(path);
-
-
-
-                    //fileDictionary.Add(filnavn, path);
-                    //SearchStudentBox.Items.Add(filnavn);
-
-                }
-            }
-        }
-
-        public void clear()
-        {
-            IEnumerable<RadioButton> radioButtons = radioButtonValidation.Children.OfType<RadioButton>();
-            Dictionary<string, List<RadioButton>> radioBtnList = new Dictionary<string, List<RadioButton>>();
-
-
-
-            foreach (RadioButton item in radioButtons)
-            {
-                if (item.GroupName == "RadioClass" )
-                {
-                    item.IsChecked = false;
-                }
-                if(item.GroupName == "erfaring")
-                {
-                    item.IsChecked = false;
-                }
-                if (item.GroupName == "age")
-                {
-                    item.IsChecked = false;
-                }
-
-
-            }
-
-            if(this.ComboboxValidation.SelectedItem !=null)
-            {
-                this.ComboboxValidation.SelectedIndex = -1;
-            }
-        }
-
+        
         private void signinButton_Click(object sender, RoutedEventArgs e)
         {
             ViewElevsList viewelevslist = new ViewElevsList();
@@ -247,10 +155,10 @@ namespace SkpProject
             this.Close();
         }
 
-        private void søgeElevText_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+        //private void søgeElevText_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
 
-        }
+        //}
 
 
         private void btnOpen_Click_2(object sender, RoutedEventArgs e)
@@ -363,6 +271,7 @@ namespace SkpProject
                 //Student stu = new Student();
                 //stu.CalculateAge();
                 currentStudent = SearchStudentBox.SelectedItem as Student;
+                App.Current.Resources["Navn"] = currentStudent.LastName;
                 StudentsFullInfo.Content = currentStudent.FullInfo;
                 string StrCurrentCprNr = SearchStudentBox.SelectedItem.ToString();
                 ViseAlder.Text = CalculateAge(StrCurrentCprNr);
@@ -376,65 +285,65 @@ namespace SkpProject
         //}
 
     
-        private void btnOpenPdfFile_Click(object sender, RoutedEventArgs e)
-        {
-            //this.Hide();
-            ////fileWatch();
-            //OpenPdfFile openPdfFile = new OpenPdfFile();
-            //openPdfFile.Show();
-            Student currentStudent = SearchStudentBox.SelectedItem as Student;
-            string filnavn = currentStudent.LastName;
-            OpenFileDialog openFile = new OpenFileDialog();
-            openFile.Filter = "PDF |*.pdf";
-            var fileName= openFile.FileName = $"C:\\Users\\afba\\Desktop\\{filnavn}.pdf";
-            Nullable<bool> result = openFile.ShowDialog();
+        //private void btnOpenPdfFile_Click(object sender, RoutedEventArgs e)
+        //{
+        //    //this.Hide();
+        //    ////fileWatch();
+        //    //OpenPdfFile openPdfFile = new OpenPdfFile();
+        //    //openPdfFile.Show();
+        //    Student currentStudent = SearchStudentBox.SelectedItem as Student;
+        //    string filnavn = currentStudent.LastName;
+        //    OpenFileDialog openFile = new OpenFileDialog();
+        //    openFile.Filter = "PDF |*.pdf";
+        //    var fileName= openFile.FileName = $"C:\\Users\\afba\\Desktop\\{filnavn}.pdf";
+        //    Nullable<bool> result = openFile.ShowDialog();
 
-            if ((bool)result)
-            {
-                string path = openFile.FileName;
-                pdfWebViewer.Navigate(new Uri("about:blank"));
-                pdfWebViewer.Navigate(path);
+        //    if ((bool)result)
+        //    {
+        //        string path = openFile.FileName;
+        //        pdfWebViewer.Navigate(new Uri("about:blank"));
+        //        pdfWebViewer.Navigate(path);
 
 
 
-                //fileDictionary.Add(filnavn, path);
-                //SearchStudentBox.Items.Add(filnavn);
+        //        //fileDictionary.Add(filnavn, path);
+        //        //SearchStudentBox.Items.Add(filnavn);
                 
-            }
-        }
+        //    }
+        //}
 
 
 
-        private void btnSubmit_Click(object sender, RoutedEventArgs e)
-        {
-            //initialize word object
-            Document document = new Document();
-            FileDialog fileDialog = new OpenFileDialog();
-            fileDialog.ShowDialog();
-            string path = fileDialog.FileName;
-            document.LoadFromFile(path);
-            //get strings to replace 
-            Dictionary<string, string> dicReplace = GetReplaceDictionary();
-            //Replace text 
-            foreach (KeyValuePair<string, string> kvp in dicReplace)
-            {
-                document.Replace(kvp.Key, kvp.Value, true, true);
-            }
-            //Save doc file.
-            document.SaveToFile(path, FileFormat.Docx);
-            //Convert to PDF
-            document.SaveToFile(path, FileFormat.PDF);
-            MessageBox.Show("All tasks are finished.");
-            document.Close();
-        }
+        //private void btnSubmit_Click(object sender, RoutedEventArgs e)
+        //{
+        //    //initialize word object
+        //    Document document = new Document();
+        //    FileDialog fileDialog = new OpenFileDialog();
+        //    fileDialog.ShowDialog();
+        //    string path = fileDialog.FileName;
+        //    document.LoadFromFile(path);
+        //    //get strings to replace 
+        //    Dictionary<string, string> dicReplace = GetReplaceDictionary();
+        //    //Replace text 
+        //    foreach (KeyValuePair<string, string> kvp in dicReplace)
+        //    {
+        //        document.Replace(kvp.Key, kvp.Value, true, true);
+        //    }
+        //    ////Save doc file.
+        //    //document.SaveToFile(path, FileFormat.Docx);
+        //    ////Convert to PDF
+        //    //document.SaveToFile(path, FileFormat.PDF);
+        //    MessageBox.Show("All tasks are finished.");
+        //    document.Close();
+        //}
 
-        Dictionary<string, string> GetReplaceDictionary()
-        {
-            Dictionary<string, string> replaceDict = new Dictionary<string, string>();
-            replaceDict.Add("#ForNavvn#", "Afsaneh");
+        //Dictionary<string, string> GetReplaceDictionary()
+        //{
+        //    Dictionary<string, string> replaceDict = new Dictionary<string, string>();
+        //    replaceDict.Add("#ForNavvn#", "Afsaneh");
 
-            return replaceDict;
-        }
+        //    return replaceDict;
+        //}
 
         private void btnClose_Click_1(object sender, RoutedEventArgs e)
         {
@@ -491,21 +400,7 @@ namespace SkpProject
 
         }
 
-        private void CPRNrTxt_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            //Student _student = new Student();
-            //_student.CalculateAge();
-            //string StrCurrentCprNr = CPRNrTxt.Text.Trim();
-            //int intStrCurrentCprNr = Convert.ToInt32(StrCurrentCprNr);
-            //ViseAlder.Text = Convert.ToString(CalculateAge(intStrCurrentCprNr));
-        }
-
        
-
-        //private void calculateAge_Click_1(object sender, RoutedEventArgs e)
-        //{
-
-        //}
 
         private void calculateAgeFromTextBox_Click(object sender, RoutedEventArgs e)
         {
@@ -513,10 +408,142 @@ namespace SkpProject
             string StrCurrentCprNr = SearchStudentBox.SelectedItem.ToString();
             ViseAlder.Text = CalculateAge(StrCurrentCprNr);
         }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+
+            bool isValid = true;
+            bool isValid2 = true;
+            //isValid2 = validationOfErfaring();
+            isValid = validationRadioButtonMethod();
+
+            if (!isValid)
+
+            {
+                MessageBox.Show("Du skal udfylde alle felter!");
+                this.Focus();
+            }
+
+            else if (!isValid2)
+            {
+                MessageBox.Show("Du skal udfylde alle felter!");
+                this.Focus();
+            }
+
+            else if (ComboboxValidation.SelectedIndex < 0)
+            {
+                MessageBox.Show("Du skal udfylde alle felter!");
+                this.Focus();
+            }
+            else
+            {
+                MessageBox.Show("Er du sikker?");
+
+                //chooseEUVProgrammering();
+                Document_Export();
+                clear();
+
+            }
+
+
+        }
+
+
+        public void chooseEUVProgrammering()
+        {
+            if (over25.IsChecked == true && NineClassYes.IsChecked == true && experienceYes.IsChecked == true && Programmering.IsSelected)
+            {
+
+                OpenFileDialog openFile = new OpenFileDialog();
+                openFile.Filter = "PDF |*.pdf";
+                openFile.FileName = $"C:\\Users\\afba\\Desktop\\EUV1Programmering";
+                Nullable<bool> result = openFile.ShowDialog();
+
+                if ((bool)result)
+                {
+                    string path = openFile.FileName;
+                    pdfWebViewer.Navigate(new Uri("about:blank"));
+                    pdfWebViewer.Navigate(path);
+
+
+                }
+            }
+
+        }
+
+        public void clear()
+        {
+            IEnumerable<RadioButton> radioButtons = radioButtonValidation.Children.OfType<RadioButton>();
+            Dictionary<string, List<RadioButton>> radioBtnList = new Dictionary<string, List<RadioButton>>();
+
+
+
+            foreach (RadioButton item in radioButtons)
+            {
+                if (item.GroupName == "RadioClass")
+                {
+                    item.IsChecked = false;
+                }
+                if (item.GroupName == "experience")
+                {
+                    item.IsChecked = false;
+                }
+                if (item.GroupName == "age")
+                {
+                    item.IsChecked = false;
+                }
+
+
+            }
+
+            if (this.ComboboxValidation.SelectedItem != null)
+            {
+                this.ComboboxValidation.SelectedIndex = -1;
+            }
+        }
+
+
+
+
+        Dictionary<string, string> GetNewDictionary()
+        {
+            Dictionary<string, string> newDict = new Dictionary<string, string>();
+            newDict.Add("navn", Convert.ToString(App.Current.Resources["Navn"]));
+            //newDict.Add("Cpr-nr", Convert.ToString(App.Current.Resources["selectedelevcprnr"]));
+
+            return newDict;
+        }
+
+        public void Document_Export()
+        {
+            string filnavn = Convert.ToString(App.Current.Resources["Navn"]);
+            Spire.Pdf.PdfDocument document = new Spire.Pdf.PdfDocument("C:\\Users\\afba\\Desktop\\EUV1Programmering.pdf");
+            Dictionary<string, string> dict = GetNewDictionary();
+            FindTextInPdfAndReplaceIt(document, dict);
+            //document.SaveToFile($"C:\\Users\\afba\\Desktop\\{filnavn}.xps");
+            document.SaveToFile($"C:\\Users\\afba\\Desktop\\{filnavn}.pdf" , Spire.Pdf.FileFormat.PDF);
+            document.Close();
+        }
+
+        public static void FindTextInPdfAndReplaceIt(PdfDocument document , Dictionary<string,string> dictionary)
+        {
+            PdfTextFind[] result = null;
+            foreach (var word in dictionary)
+            {
+                foreach (PdfPageBase page in document.Pages)
+                {
+                    result = page.FindText(word.Key, TextFindParameter.None).Finds;
+                }
+                foreach (PdfTextFind find in result)
+                {
+                    find.ApplyRecoverString(word.Value, System.Drawing.Color.Red, true);
+                }
+            }
+        }
+
+
+
     }
-
-
-
 
 }
 

@@ -48,7 +48,7 @@ namespace SkpProject
 
         public Student currentStudent { get; set; } = new Student();
         public Dictionary<string, string> fileDictionary = new Dictionary<string, string>();
-
+        
 
 
         public ViewElevsList()
@@ -65,7 +65,7 @@ namespace SkpProject
             Data _data = new Data();
             // _data.CreateStudentsData();
             _data.GetStudents();
-            
+
             List<Student> GetStudents = _data.students.Where(student => (student.FirstName.ToLower()).StartsWith(text.ToLower()) || student.LastName.ToLower().StartsWith(text.ToLower())).ToList();
             //List<Student> GetStudents = Data.students.Where(student => (student.FirstName).StartsWith(text)).ToList();
             SearchStudentBox.ItemsSource = GetStudents;
@@ -129,11 +129,22 @@ namespace SkpProject
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-
-
-            //fileDictionary.Remove(item.ToString());
+            List<Student> students = new List<Student>();
+            Data _data = new Data();
+            _data.GetStudents();
             SearchStudentBox.Items.Remove(SearchStudentBox.SelectedItem);
 
+
+            //for(int i=students.Count -1;i>=0 ; i--)
+            // {
+            //     if(students[i].IsChecked)
+            //     {
+            //         students.RemoveAt(i);
+            //     }
+            // }
+
+
+            MessageBox.Show("Successfully!");
 
 
             
