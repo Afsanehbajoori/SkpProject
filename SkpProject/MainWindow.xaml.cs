@@ -19,14 +19,20 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.OleDb;
 using System.Data;
-using Spire.Doc;
+using iTextSharp;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using iTextSharp.text.xml;
 using System.IO;
+using Spire.Doc;
 using Excel = Microsoft.Office.Interop.Excel;
 using ClosedXML.Excel;
 using SkpProject;
 
 using Spire.Pdf.General.Find;
 using Spire.Pdf;
+using Spire.Pdf.Widget;
+using Spire.Pdf.Fields;
 
 namespace SkpProject
 {
@@ -271,7 +277,7 @@ namespace SkpProject
                 //Student stu = new Student();
                 //stu.CalculateAge();
                 currentStudent = SearchStudentBox.SelectedItem as Student;
-                App.Current.Resources["Navn"] = currentStudent.LastName;
+                App.Current.Resources["SelectedNavn"] = currentStudent.LastName;
                 StudentsFullInfo.Content = currentStudent.FullInfo;
                 string StrCurrentCprNr = SearchStudentBox.SelectedItem.ToString();
                 ViseAlder.Text = CalculateAge(StrCurrentCprNr);
@@ -439,8 +445,8 @@ namespace SkpProject
             {
                 MessageBox.Show("Er du sikker?");
 
-                //chooseEUVProgrammering();
-                Document_Export();
+                chooseEUVProgrammering();
+                //Document_Export();
                 clear();
 
             }
@@ -456,14 +462,54 @@ namespace SkpProject
 
                 OpenFileDialog openFile = new OpenFileDialog();
                 openFile.Filter = "PDF |*.pdf";
-                openFile.FileName = $"C:\\Users\\afba\\Desktop\\EUV1Programmering";
+                openFile.FileName = $"C:\\Users\\afba\\Desktop\\EUV1Programmering.pdf";
                 Nullable<bool> result = openFile.ShowDialog();
+
 
                 if ((bool)result)
                 {
                     string path = openFile.FileName;
-                    pdfWebViewer.Navigate(new Uri("about:blank"));
-                    pdfWebViewer.Navigate(path);
+                    Student currentStudent = SearchStudentBox.SelectedItem as Student;
+                    string filnavn = currentStudent.LastName;
+                    string filcprnr = currentStudent.CPRNR;
+                    DateTime Now = DateTime.Now;
+                    //Spire.Pdf.PdfDocument doc = new Spire.Pdf.PdfDocument();
+                    var newFile = $"C:\\Users\\afba\\Desktop\\{filnavn}.pdf";
+                    PdfReader pdfReader = new PdfReader(path);
+                    PdfStamper pdfStamper = new PdfStamper(pdfReader, new FileStream(newFile, FileMode.Create));
+                    var pdfFormFields = pdfStamper.AcroFields;
+                    pdfFormFields.SetField("Navn", filnavn);
+                    pdfFormFields.SetField("Cprnr", filcprnr);
+                    pdfFormFields.SetField("RKV gennemført", Now.Day.ToString() +"/" + Now.Month.ToString() );
+                    pdfFormFields.SetField("År", Now.Year.ToString());
+                    pdfFormFields.SetField("Fra", Now.Hour.ToString() + ":" + Now.Minute.ToString());
+                    pdfFormFields.SetField("Dato", Now.Day.ToString() + "/" + Now.Month.ToString() + "/" + Now.Year.ToString());
+                    pdfFormFields.SetField("Grundforløbet"  , "x");
+                    //pdfFormFields.SetField("Grundforløbet", );
+                    pdfStamper.FormFlattening = false;
+
+
+
+
+                    //PdfFormWidget formWidget = pdfStamper.FormFlattening as PdfFormWidget;
+                    //for(int i=0; i< formWidget.FieldsWidget.List.Count; i++)
+                    //{
+                    //    PdfField field = formWidget.FieldsWidget.List[i] as PdfField;
+                    //    string fieldNavn = field.Name;
+                    //    bool isRequired = field.Required;
+                    //    if(isRequired)
+                    //    {
+                    //        MessageBox.Show("Mangler du nogle?");
+                    //    }
+                    //}
+
+
+
+
+                   // pdfStamper.FormFlattening = false;
+                    pdfStamper.Close();
+                   //pdfWebViewer.Navigate(new Uri("about:blank"));
+                   pdfWebViewer.Navigate(newFile);
 
 
                 }
@@ -504,42 +550,6 @@ namespace SkpProject
 
 
 
-
-        Dictionary<string, string> GetNewDictionary()
-        {
-            Dictionary<string, string> newDict = new Dictionary<string, string>();
-            newDict.Add("navn", Convert.ToString(App.Current.Resources["Navn"]));
-            //newDict.Add("Cpr-nr", Convert.ToString(App.Current.Resources["selectedelevcprnr"]));
-
-            return newDict;
-        }
-
-        public void Document_Export()
-        {
-            string filnavn = Convert.ToString(App.Current.Resources["Navn"]);
-            Spire.Pdf.PdfDocument document = new Spire.Pdf.PdfDocument("C:\\Users\\afba\\Desktop\\EUV1Programmering.pdf");
-            Dictionary<string, string> dict = GetNewDictionary();
-            FindTextInPdfAndReplaceIt(document, dict);
-            //document.SaveToFile($"C:\\Users\\afba\\Desktop\\{filnavn}.xps");
-            document.SaveToFile($"C:\\Users\\afba\\Desktop\\{filnavn}.pdf" , Spire.Pdf.FileFormat.PDF);
-            document.Close();
-        }
-
-        public static void FindTextInPdfAndReplaceIt(PdfDocument document , Dictionary<string,string> dictionary)
-        {
-            PdfTextFind[] result = null;
-            foreach (var word in dictionary)
-            {
-                foreach (PdfPageBase page in document.Pages)
-                {
-                    result = page.FindText(word.Key, TextFindParameter.None).Finds;
-                }
-                foreach (PdfTextFind find in result)
-                {
-                    find.ApplyRecoverString(word.Value, System.Drawing.Color.Red, true);
-                }
-            }
-        }
 
 
 

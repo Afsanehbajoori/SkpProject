@@ -18,7 +18,7 @@ using System.Windows.Shapes;
 using Microsoft.Win32;
 using System.IO;
 using System.Windows.Xps.Packaging;
-
+using iTextSharp.text.pdf;
 
 namespace SkpProject
 {
@@ -152,8 +152,7 @@ namespace SkpProject
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            //MessageBox.Show("hi");
-            //var selectedItem = SearchStudentBox.Items.Cast<CheckBox>().Where(x => x.IsChecked == true).Select(x => x.Content) ;
+            
 
             Student currentStudent = SearchStudentBox.SelectedItem as Student;
             string filnavn = currentStudent.LastName;
@@ -162,11 +161,12 @@ namespace SkpProject
             openFile.DefaultExt = ".pdf";
             openFile.FileName = $"C:\\Users\\afba\\Desktop\\{filnavn}.pdf";
             string path = openFile.FileName;
-            pdfWebViewer.Navigate(new Uri("about:blank"));
+
+
+            //pdfWebViewer.Navigate(new Uri("about:blank"));
             pdfWebViewer.Navigate(path);
 
-            //fileDictionary.Add(filnavn, path);
-            //SearchStudentBox.Items.Add(filnavn);
+            
 
         }
     }
