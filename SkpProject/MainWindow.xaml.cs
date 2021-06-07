@@ -33,6 +33,9 @@ using Spire.Pdf.General.Find;
 using Spire.Pdf;
 using Spire.Pdf.Widget;
 using Spire.Pdf.Fields;
+using Section = iTextSharp.text.Section;
+using GemBox.Document;
+
 
 namespace SkpProject
 {
@@ -51,7 +54,8 @@ namespace SkpProject
 
         public Student currentStudent { get; set; } = new Student();
         public Dictionary<string, string> fileDictionary = new Dictionary<string, string>();
-
+       
+       
 
         public MainWindow()
         {
@@ -153,18 +157,29 @@ namespace SkpProject
             UnderviserPanel.Visibility = Visibility.Collapsed;
         }
 
-        
+
         private void signinButton_Click(object sender, RoutedEventArgs e)
         {
             ViewElevsList viewelevslist = new ViewElevsList();
-            viewelevslist.Show();
-            this.Close();
+            if (passwordText.Password == "1234")
+            {
+                viewelevslist.Show();
+                this.Close();
+            }
+            else if (passwordText.Password == "")
+            {
+                MessageBox.Show("Indtast adgangskode!!");
+                passwordText.Focus();
+            }
+            else
+            {
+                MessageBox.Show("ugyldig adgangskode!!");
+                passwordText.Focus();
+            }
+
         }
 
-        //private void søgeElevText_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
 
-        //}
 
 
         private void btnOpen_Click_2(object sender, RoutedEventArgs e)
@@ -427,19 +442,19 @@ namespace SkpProject
 
             {
                 MessageBox.Show("Du skal udfylde alle felter!");
-                this.Focus();
+                
             }
 
             else if (!isValid2)
             {
                 MessageBox.Show("Du skal udfylde alle felter!");
-                this.Focus();
+                
             }
 
             else if (ComboboxValidation.SelectedIndex < 0)
             {
                 MessageBox.Show("Du skal udfylde alle felter!");
-                this.Focus();
+                
             }
             else
             {
@@ -457,7 +472,7 @@ namespace SkpProject
 
         public void chooseEUVProgrammering()
         {
-            if (over25.IsChecked == true && NineClassYes.IsChecked == true && experienceYes.IsChecked == true && Programmering.IsSelected)
+            if (over25.IsChecked == true && NineClassYes.IsChecked == true && experienceYes.IsChecked == true)      //&& ItSupport.IsSelected
             {
 
                 OpenFileDialog openFile = new OpenFileDialog();
@@ -472,19 +487,58 @@ namespace SkpProject
                     Student currentStudent = SearchStudentBox.SelectedItem as Student;
                     string filnavn = currentStudent.LastName;
                     string filcprnr = currentStudent.CPRNR;
+                    
+                    var education =(ComboBoxItem)ComboboxValidation.SelectedItem;
+                    var educationContent = (string)education.Content;
+
+                    var skillValue = Age.Children.OfType<RadioButton>().FirstOrDefault(x => x.IsChecked.HasValue && x.IsChecked.Value);
+                    var skillContent = (string)skillValue.Name;
+
+                    var groundforløb = Grundforløbet.Children.OfType<RadioButton>().FirstOrDefault(x => x.IsChecked.HasValue && x.IsChecked.Value);
+                    if(groundforløb.Content == GrundforløbetNej)
+                    {
+                       // string groundforløbContent = "X";
+                    }
+
                     DateTime Now = DateTime.Now;
-                    //Spire.Pdf.PdfDocument doc = new Spire.Pdf.PdfDocument();
+                    Spire.Pdf.PdfDocument doc = new Spire.Pdf.PdfDocument();
                     var newFile = $"C:\\Users\\afba\\Desktop\\{filnavn}.pdf";
                     PdfReader pdfReader = new PdfReader(path);
                     PdfStamper pdfStamper = new PdfStamper(pdfReader, new FileStream(newFile, FileMode.Create));
                     var pdfFormFields = pdfStamper.AcroFields;
                     pdfFormFields.SetField("Navn", filnavn);
                     pdfFormFields.SetField("Cprnr", filcprnr);
+                    pdfFormFields.SetField("Evt speciale", educationContent);
+                    pdfFormFields.SetField("Uddannelse", skillContent);
                     pdfFormFields.SetField("RKV gennemført", Now.Day.ToString() +"/" + Now.Month.ToString() );
                     pdfFormFields.SetField("År", Now.Year.ToString());
                     pdfFormFields.SetField("Fra", Now.Hour.ToString() + ":" + Now.Minute.ToString());
                     pdfFormFields.SetField("Dato", Now.Day.ToString() + "/" + Now.Month.ToString() + "/" + Now.Year.ToString());
-                    pdfFormFields.SetField("Grundforløbet"  , "x");
+                    pdfFormFields.SetField("Grundforløbet"  ,"");
+
+
+                    
+
+
+                    ////Document doc = new Document(@"..\..\Table.doc");
+                    ////Section section = doc.Sections[0];
+                    ////ITable table = section.Tables[0];
+                    //////#region replace text
+                    //////TableCell cell1 = table.Rows[1].Cells[1];
+                    //////Paragraph p1 = cell1.Paragraphs[0];
+                    //////p1.Text = "abc";
+
+                    //////TableCell cell2 = table.Rows[1].Cells[2];
+                    //////Paragraph p2 = cell2.Paragraphs[0];
+                    //////p2.Items.Clear();
+                    //////p2.AppendText("def");
+
+                    //////TableCell cell3 = table.Rows[1].Cells[3];
+                    //////Paragraph p3 = cell3.Paragraphs[0];
+                    //////(p3.Items[0] as TextRange).Text = "hij";
+                    //////#endregion
+
+
                     //pdfFormFields.SetField("Grundforløbet", );
                     pdfStamper.FormFlattening = false;
 
@@ -541,6 +595,7 @@ namespace SkpProject
 
 
             }
+            
 
             if (this.ComboboxValidation.SelectedItem != null)
             {
@@ -548,11 +603,31 @@ namespace SkpProject
             }
         }
 
+       
 
+        private void passwordText_KeyDown(object sender, KeyEventArgs e)
+        {
+            ViewElevsList viewElevsList = new ViewElevsList();
+            if (e.Key == Key.Enter)
+            {
+                if(passwordText.Password == "1234")
+                {
+                    viewElevsList.Show();
+                    this.Close();
+                }
+                else if(passwordText.Password == "")
+                {
+                    MessageBox.Show("Indtast adgangskode!!");
+                }
+                else
+                {
+                    MessageBox.Show("ugyldig adgangskode!!");
+                }
 
+            }
+            
 
-
-
+        }
     }
 
 }

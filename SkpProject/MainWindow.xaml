@@ -174,15 +174,16 @@
 
                             <!--<DatePicker Width="150" HorizontalAlignment="Left" Name="DateTimePiker" SelectedDateChanged="DateTimePiker_SelectedDateChanged"></DatePicker>
                             <TextBlock x:Name="ShowAge" HorizontalAlignment="left" Height="20" Width="30" FontSize="10" />-->
-                            <DockPanel>
+                            <!--<DockPanel>-->
 
                                 <!--<TextBox x:Name="CPRNrTxt" Height="30" Width="150" HorizontalAlignment="Left" Background="LightGray"   />
                                 <Button x:Name="calculateAgeFromTextBox" Click="calculateAgeFromTextBox_Click">Regne Aldre</Button>-->
                                 <!--<TextBlock x:Name="ViseAlder" HorizontalAlignment="left" Height="20" Width="30" FontSize="10" />-->
-                            </DockPanel>
+                            <!--</DockPanel>-->
+                            <StackPanel x:Name="Age">
                             <RadioButton ClickMode="Press" GroupName="age" x:Name="over25"  >Over 25</RadioButton>
                             <RadioButton ClickMode="Press" GroupName="age" x:Name="under25"  >Under 25</RadioButton>
-
+                            </StackPanel>
 
 
 
@@ -207,6 +208,15 @@
                                 <ComboBoxItem x:Name="Infrastruktur">Infrastruktur</ComboBoxItem>
                             </ComboBox>
 
+                            
+                            <StackPanel x:Name="Grundforløbet">
+                            <Label FontWeight="Bold" >Grundforløbet</Label>
+                            <RadioButton ClickMode="Press" GroupName="Grundforløbet" x:Name="GrundforløbetNej" >Nej</RadioButton>
+                            <RadioButton ClickMode="Press" GroupName="Grundforløbet" x:Name="GrundforløbetDeleHeraf">Dele heraf</RadioButton>
+                            <RadioButton ClickMode="Press" GroupName="Grundforløbet" x:Name="GrundforløbetJa">Ja</RadioButton>
+                            </StackPanel>
+                            
+                            
                             <Label   Grid.Column="0" Grid.Row="7" FontWeight="Bold">Notification:</Label>
                             <TextBox Background="WhiteSmoke"  x:Name="MultiLineTxt" Width="150" Height="50" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible"  HorizontalAlignment="Left"/>
 
@@ -284,12 +294,12 @@
 
 
                 <TextBlock Grid.Column="0" Grid.Row="0" Text="Password :" FontSize="30" Height="64"  Grid.ColumnSpan="2"   />
-                <PasswordBox  PasswordChar="*" x:Name="passwordText" Grid.Column="1" Grid.Row="1" Height="64" Width="300" Background="#eee" Margin="10" />
+                <PasswordBox  PasswordChar="*" x:Name="passwordText" KeyDown="passwordText_KeyDown"  FontSize="40"  Grid.Column="1" Grid.Row="1" Height="64" Width="300" Background="#eee" Margin="10" />
 
-                <Button x:Name="signinButton"  Background="Gray" Content="Sign In" Margin="10" FontSize="30" Foreground="White"  Click="signinButton_Click"  Grid.Column="1"  Grid.Row="2"   Height="64" Width="300"    />
+                <Button x:Name="signinButton"  Background="Gray" Content="Sign In" Margin="10" FontSize="30" Foreground="White" Click="signinButton_Click"   Grid.Column="1"  Grid.Row="2"   Height="64" Width="300"    />
             </Grid>
 
-
+            
 
 
 
