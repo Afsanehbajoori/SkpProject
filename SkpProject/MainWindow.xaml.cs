@@ -469,9 +469,15 @@ namespace SkpProject
 
         }
 
+        
+
 
         public void chooseEUVProgrammering()
         {
+
+
+            IEnumerable<RadioButton> radioButtons = Grundforløbet.Children.OfType<RadioButton>();
+            IEnumerable<RadioButton> radioBtnHf = Hovedforløbet.Children.OfType<RadioButton>();
             if (over25.IsChecked == true && NineClassYes.IsChecked == true && experienceYes.IsChecked == true)      //&& ItSupport.IsSelected
             {
 
@@ -495,10 +501,10 @@ namespace SkpProject
                     var skillContent = (string)skillValue.Name;
 
                     var groundforløb = Grundforløbet.Children.OfType<RadioButton>().FirstOrDefault(x => x.IsChecked.HasValue && x.IsChecked.Value);
-                    if(groundforløb.Content == GrundforløbetNej)
-                    {
-                       // string groundforløbContent = "X";
-                    }
+                    var groundforløbContent = (string)groundforløb.Content;
+
+                  
+
 
                     DateTime Now = DateTime.Now;
                     Spire.Pdf.PdfDocument doc = new Spire.Pdf.PdfDocument();
@@ -508,16 +514,106 @@ namespace SkpProject
                     var pdfFormFields = pdfStamper.AcroFields;
                     pdfFormFields.SetField("Navn", filnavn);
                     pdfFormFields.SetField("Cprnr", filcprnr);
-                    pdfFormFields.SetField("Evt speciale", educationContent);
+                    for(int page=1; page <= pdfReader.NumberOfPages ;page++)
+                    {
+                        pdfFormFields.SetField("Evt speciale", educationContent);
+                    }
+                   
                     pdfFormFields.SetField("Uddannelse", skillContent);
-                    pdfFormFields.SetField("RKV gennemført", Now.Day.ToString() +"/" + Now.Month.ToString() );
+
+
+                    foreach (var item in pdfFormFields.Fields)
+                    {
+                        Console.WriteLine("{0} , {1}  ", item.Key, item.Value);
+                    }
+
+                    pdfFormFields.SetField("Uddannelse", groundforløbContent);
+                    pdfFormFields.SetField("RKV gennemført", Now.Day.ToString() + "/" + Now.Month.ToString());
                     pdfFormFields.SetField("År", Now.Year.ToString());
                     pdfFormFields.SetField("Fra", Now.Hour.ToString() + ":" + Now.Minute.ToString());
                     pdfFormFields.SetField("Dato", Now.Day.ToString() + "/" + Now.Month.ToString() + "/" + Now.Year.ToString());
-                    pdfFormFields.SetField("Grundforløbet"  ,"");
+
+                    foreach (var item in radioButtons)
+                    {
+                        if (!(bool)GrundforløbetNej.IsChecked)
+                        {
+                            pdfFormFields.SetField("GF nej", "Nej");
+                        }
+                        if (!(bool)GrundforløbetDeleHeraf.IsChecked)
+                        {
+                            pdfFormFields.SetField("GF dele", "Nej");
+                        }
+                        if (!(bool)GrundforløbetJa.IsChecked)
+                        {
+                            pdfFormFields.SetField("GF ja", "Nej");
+                        }
+                    }
+
+                        foreach (var item in radioButtons)
+                    {
+                        if((bool)GrundforløbetNej.IsChecked)
+                        {
+                            pdfFormFields.SetField("GF nej", "Yes");
+                        }
+                        if ((bool)GrundforløbetDeleHeraf.IsChecked)
+                        {
+                            pdfFormFields.SetField("GF dele", "Yes");
+                        }
+                        if ((bool)GrundforløbetJa.IsChecked)
+                        {
+                            pdfFormFields.SetField("GF ja", "Yes");
+                        }
+
+                       
+                    }
+
+                    foreach (var item in radioBtnHf)
+                    {
+                        if (!(bool)HovedforløbetNej.IsChecked)
+                        {
+                            pdfFormFields.SetField("HF nej", "Nej");
+                        }
+                        if (!(bool)HovedforløbetDeleHeraf.IsChecked)
+                        {
+                            pdfFormFields.SetField("HF dele", "Nej");
+                        }
+                        if (!(bool)HovedforløbetJa.IsChecked)
+                        {
+                            pdfFormFields.SetField("HF ja", "Nej");
+                        }
+                    }
+
+                    foreach (var item in radioBtnHf)
+                    {
+                        if ((bool)HovedforløbetNej.IsChecked)
+                        {
+                            pdfFormFields.SetField("HF nej", "Yes");
+                        }
+                        if ((bool)HovedforløbetDeleHeraf.IsChecked)
+                        {
+                            pdfFormFields.SetField("HF dele", "Yes");
+                        }
+                        if ((bool)HovedforløbetJa.IsChecked)
+                        {
+                            pdfFormFields.SetField("HF ja", "Yes");
+                        }
 
 
-                    
+                    }
+
+                    var GFlængde = GFLængde.Text.ToString();
+                    var HFlængde = HFLængde.Text.ToString();
+                    var praktiklængdeÅr = PraktikÅrLængde.Text.ToString();
+                    var praktiklængdeMåneder = PraktikMånederLængde.Text.ToString();
+                    var praktiklængdeUger = PraktikUgerLængde.Text.ToString();
+
+                    pdfFormFields.SetField("GF Uger", GFlængde);
+                    pdfFormFields.SetField("HF Uger", HFlængde);
+                    pdfFormFields.SetField("Praktik År", praktiklængdeÅr);
+                    pdfFormFields.SetField("Praktik Md", praktiklængdeMåneder);
+                    pdfFormFields.SetField("Praktik Uger", praktiklængdeUger);
+                  
+                   
 
 
                     ////Document doc = new Document(@"..\..\Table.doc");
