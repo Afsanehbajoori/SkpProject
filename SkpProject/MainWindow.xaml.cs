@@ -433,38 +433,38 @@ namespace SkpProject
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
 
-            bool isValid = true;
-            bool isValid2 = true;
-            //isValid2 = validationOfErfaring();
-            isValid = validationRadioButtonMethod();
+            //bool isValid = true;
+            //bool isValid2 = true;
+            ////isValid2 = validationOfErfaring();
+            //isValid = validationRadioButtonMethod();
 
-            if (!isValid)
+            //if (!isValid)
 
-            {
-                MessageBox.Show("Du skal udfylde alle felter!");
+            //{
+            //    MessageBox.Show("Du skal udfylde alle felter!");
                 
-            }
+            //}
 
-            else if (!isValid2)
-            {
-                MessageBox.Show("Du skal udfylde alle felter!");
+            //else if (!isValid2)
+            //{
+            //    MessageBox.Show("Du skal udfylde alle felter!");
                 
-            }
+            //}
 
-            else if (ComboboxValidation.SelectedIndex < 0)
-            {
-                MessageBox.Show("Du skal udfylde alle felter!");
+            //else if (ComboboxValidation.SelectedIndex < 0)
+            //{
+            //    MessageBox.Show("Du skal udfylde alle felter!");
                 
-            }
-            else
-            {
-                MessageBox.Show("Er du sikker?");
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Er du sikker?");
 
-                chooseEUVProgrammering();
-                //Document_Export();
-                clear();
+            //    chooseEUVProgrammering();
+            //    //Document_Export();
+            //    clear();
 
-            }
+            //}
 
 
         }
@@ -476,257 +476,244 @@ namespace SkpProject
         {
 
 
-            IEnumerable<RadioButton> radioButtons = Grundforløbet.Children.OfType<RadioButton>();
-            IEnumerable<RadioButton> radioBtnHf = Hovedforløbet.Children.OfType<RadioButton>();
-            if (over25.IsChecked == true && NineClassYes.IsChecked == true && experienceYes.IsChecked == true)      //&& ItSupport.IsSelected
-            {
+            //IEnumerable<RadioButton> radioButtons = Grundforløbet.Children.OfType<RadioButton>();
+            //IEnumerable<RadioButton> radioBtnHf = Hovedforløbet.Children.OfType<RadioButton>();
+            //if (over25.IsChecked == true && NineClassYes.IsChecked == true && experienceYes.IsChecked == true)      //&& ItSupport.IsSelected
+            //{
 
-                OpenFileDialog openFile = new OpenFileDialog();
-                openFile.Filter = "PDF |*.pdf";
-                openFile.FileName = $"C:\\Users\\afba\\Desktop\\EUV1Programmering.pdf";
-                Nullable<bool> result = openFile.ShowDialog();
+            //    OpenFileDialog openFile = new OpenFileDialog();
+            //    openFile.Filter = "PDF |*.pdf";
+            //    openFile.FileName = $"C:\\Users\\afba\\Desktop\\EUV1Programmering.pdf";
+            //    Nullable<bool> result = openFile.ShowDialog();
 
 
-                if ((bool)result)
-                {
-                    string path = openFile.FileName;
-                    Student currentStudent = SearchStudentBox.SelectedItem as Student;
-                    string filnavn = currentStudent.LastName;
-                    string filcprnr = currentStudent.CPRNR;
+                //if ((bool)result)
+                //{
+                    //string path = openFile.FileName;
+                    //Student currentStudent = SearchStudentBox.SelectedItem as Student;
+                    //string filnavn = currentStudent.LastName;
+                    //string filcprnr = currentStudent.CPRNR;
                     
-                    var education =(ComboBoxItem)ComboboxValidation.SelectedItem;
-                    var educationContent = (string)education.Content;
+                    //var education =(ComboBoxItem)ComboboxValidation.SelectedItem;
+                    //var educationContent = (string)education.Content;
 
-                    var skillValue = Age.Children.OfType<RadioButton>().FirstOrDefault(x => x.IsChecked.HasValue && x.IsChecked.Value);
-                    var skillContent = (string)skillValue.Name;
+                    //var skillValue = Age.Children.OfType<RadioButton>().FirstOrDefault(x => x.IsChecked.HasValue && x.IsChecked.Value);
+                    //var skillContent = (string)skillValue.Name;
 
-                    var groundforløb = Grundforløbet.Children.OfType<RadioButton>().FirstOrDefault(x => x.IsChecked.HasValue && x.IsChecked.Value);
-                    var groundforløbContent = (string)groundforløb.Content;
+                    //var groundforløb = Grundforløbet.Children.OfType<RadioButton>().FirstOrDefault(x => x.IsChecked.HasValue && x.IsChecked.Value);
+                    //var groundforløbContent = (string)groundforløb.Content;
 
                   
 
 
-                    DateTime Now = DateTime.Now;
-                    Spire.Pdf.PdfDocument doc = new Spire.Pdf.PdfDocument();
-                    var newFile = $"C:\\Users\\afba\\Desktop\\{filnavn}.pdf";
-                    PdfReader pdfReader = new PdfReader(path);
-                    PdfStamper pdfStamper = new PdfStamper(pdfReader, new FileStream(newFile, FileMode.Create));
-                    var pdfFormFields = pdfStamper.AcroFields;
-                    pdfFormFields.SetField("Navn", filnavn);
-                    pdfFormFields.SetField("Cprnr", filcprnr);
-                    for(int page=1; page <= pdfReader.NumberOfPages ;page++)
-                    {
-                        pdfFormFields.SetField("Evt speciale", educationContent);
-                    }
+                   // DateTime Now = DateTime.Now;
+                   // Spire.Pdf.PdfDocument doc = new Spire.Pdf.PdfDocument();
+                   // var newFile = $"C:\\Users\\afba\\Desktop\\{filnavn}.pdf";
+                   // PdfReader pdfReader = new PdfReader(path);
+                   // PdfStamper pdfStamper = new PdfStamper(pdfReader, new FileStream(newFile, FileMode.Create));
+                   // var pdfFormFields = pdfStamper.AcroFields;
+                   // pdfFormFields.SetField("Navn", filnavn);
+                   // pdfFormFields.SetField("Cprnr", filcprnr);
+                   // for(int page=1; page <= pdfReader.NumberOfPages ;page++)
+                   // {
+                   //     pdfFormFields.SetField("Evt speciale", educationContent);
+                   // }
                    
-                    pdfFormFields.SetField("Uddannelse", skillContent);
+                   // pdfFormFields.SetField("Uddannelse", skillContent);
 
 
-                    foreach (var item in pdfFormFields.Fields)
-                    {
-                        Console.WriteLine("{0} , {1}  ", item.Key, item.Value);
-                    }
+                   // foreach (var item in pdfFormFields.Fields)
+                   // {
+                   //     System.Console.WriteLine("{0} , {1}  ", item.Key, item.Value);
+                   // }
 
-                    pdfFormFields.SetField("Uddannelse", groundforløbContent);
-                    pdfFormFields.SetField("RKV gennemført", Now.Day.ToString() + "/" + Now.Month.ToString());
-                    pdfFormFields.SetField("År", Now.Year.ToString());
-                    pdfFormFields.SetField("Fra", Now.Hour.ToString() + ":" + Now.Minute.ToString());
-                    pdfFormFields.SetField("Dato", Now.Day.ToString() + "/" + Now.Month.ToString() + "/" + Now.Year.ToString());
+                   //// pdfFormFields.SetField("Uddannelse", groundforløbContent);
+                   // pdfFormFields.SetField("RKV gennemført", Now.Day.ToString() + "/" + Now.Month.ToString());
+                   // pdfFormFields.SetField("År", Now.Year.ToString());
+                   // pdfFormFields.SetField("Fra", Now.Hour.ToString() + ":" + Now.Minute.ToString());
+                   // pdfFormFields.SetField("Dato", Now.Day.ToString() + "/" + Now.Month.ToString() + "/" + Now.Year.ToString());
 
-                    foreach (var item in radioButtons)
-                    {
-                        if (!(bool)GrundforløbetNej.IsChecked)
-                        {
-                            pdfFormFields.SetField("GF nej", "Nej");
-                        }
-                        if (!(bool)GrundforløbetDeleHeraf.IsChecked)
-                        {
-                            pdfFormFields.SetField("GF dele", "Nej");
-                        }
-                        if (!(bool)GrundforløbetJa.IsChecked)
-                        {
-                            pdfFormFields.SetField("GF ja", "Nej");
-                        }
-                    }
+                   // foreach (var item in radioButtons)
+                   // {
+                   //     if (!(bool)GrundforløbetNej.IsChecked)
+                   //     {
+                   //         pdfFormFields.SetField("GF nej", "Nej");
+                   //     }
+                   //     if (!(bool)GrundforløbetDeleHeraf.IsChecked)
+                   //     {
+                   //         pdfFormFields.SetField("GF dele", "Nej");
+                   //     }
+                   //     if (!(bool)GrundforløbetJa.IsChecked)
+                   //     {
+                   //         pdfFormFields.SetField("GF ja", "Nej");
+                   //     }
+                   // }
 
-                        foreach (var item in radioButtons)
-                    {
-                        if((bool)GrundforløbetNej.IsChecked)
-                        {
-                            pdfFormFields.SetField("GF nej", "Yes");
-                        }
-                        if ((bool)GrundforløbetDeleHeraf.IsChecked)
-                        {
-                            pdfFormFields.SetField("GF dele", "Yes");
-                        }
-                        if ((bool)GrundforløbetJa.IsChecked)
-                        {
-                            pdfFormFields.SetField("GF ja", "Yes");
-                        }
+                   //     foreach (var item in radioButtons)
+                   // {
+                   //     if((bool)GrundforløbetNej.IsChecked)
+                   //     {
+                   //         pdfFormFields.SetField("GF nej", "Yes");
+                   //     }
+                   //     if ((bool)GrundforløbetDeleHeraf.IsChecked)
+                   //     {
+                   //         pdfFormFields.SetField("GF dele", "Yes");
+                   //     }
+                   //     if ((bool)GrundforløbetJa.IsChecked)
+                   //     {
+                   //         pdfFormFields.SetField("GF ja", "Yes");
+                   //     }
 
                        
-                    }
+                   // }
 
-                    foreach (var item in radioBtnHf)
-                    {
-                        if (!(bool)HovedforløbetNej.IsChecked)
-                        {
-                            pdfFormFields.SetField("HF nej", "Nej");
-                        }
-                        if (!(bool)HovedforløbetDeleHeraf.IsChecked)
-                        {
-                            pdfFormFields.SetField("HF dele", "Nej");
-                        }
-                        if (!(bool)HovedforløbetJa.IsChecked)
-                        {
-                            pdfFormFields.SetField("HF ja", "Nej");
-                        }
-                    }
+                   // foreach (var item in radioBtnHf)
+                   // {
+                   //     if (!(bool)HovedforløbetNej.IsChecked)
+                   //     {
+                   //         pdfFormFields.SetField("HF nej", "Nej");
+                   //     }
+                   //     if (!(bool)HovedforløbetDeleHeraf.IsChecked)
+                   //     {
+                   //         pdfFormFields.SetField("HF dele", "Nej");
+                   //     }
+                   //     if (!(bool)HovedforløbetJa.IsChecked)
+                   //     {
+                   //         pdfFormFields.SetField("HF ja", "Nej");
+                   //     }
+                   // }
 
-                    foreach (var item in radioBtnHf)
-                    {
-                        if ((bool)HovedforløbetNej.IsChecked)
-                        {
-                            pdfFormFields.SetField("HF nej", "Yes");
-                        }
-                        if ((bool)HovedforløbetDeleHeraf.IsChecked)
-                        {
-                            pdfFormFields.SetField("HF dele", "Yes");
-                        }
-                        if ((bool)HovedforløbetJa.IsChecked)
-                        {
-                            pdfFormFields.SetField("HF ja", "Yes");
-                        }
+                   // foreach (var item in radioBtnHf)
+                   // {
+                   //     if ((bool)HovedforløbetNej.IsChecked)
+                   //     {
+                   //         pdfFormFields.SetField("HF nej", "Yes");
+                   //     }
+                   //     if ((bool)HovedforløbetDeleHeraf.IsChecked)
+                   //     {
+                   //         pdfFormFields.SetField("HF dele", "Yes");
+                   //     }
+                   //     if ((bool)HovedforløbetJa.IsChecked)
+                   //     {
+                   //         pdfFormFields.SetField("HF ja", "Yes");
+                   //     }
 
 
-                    }
+                   // }
 
-                    var GFlængde = GFLængde.Text.ToString();
-                    var HFlængde = HFLængde.Text.ToString();
-                    var praktiklængdeÅr = PraktikÅrLængde.Text.ToString();
-                    var praktiklængdeMåneder = PraktikMånederLængde.Text.ToString();
-                    var praktiklængdeUger = PraktikUgerLængde.Text.ToString();
+                   // var GFlængde = GFLængde.Text.ToString();
+                   // var HFlængde = HFLængde.Text.ToString();
+                   // var praktiklængdeÅr = PraktikÅrLængde.Text.ToString();
+                   // var praktiklængdeMåneder = PraktikMånederLængde.Text.ToString();
+                   // var praktiklængdeUger = PraktikUgerLængde.Text.ToString();
 
-                    pdfFormFields.SetField("GF Uger", GFlængde);
-                    pdfFormFields.SetField("HF Uger", HFlængde);
-                    pdfFormFields.SetField("Praktik År", praktiklængdeÅr);
-                    pdfFormFields.SetField("Praktik Md", praktiklængdeMåneder);
-                    pdfFormFields.SetField("Praktik Uger", praktiklængdeUger);
+                   ////husk validation på felterne
+
+                   // pdfFormFields.SetField("GF Uger", GFlængde);
+                   // pdfFormFields.SetField("HF Uger", HFlængde);
+                   // pdfFormFields.SetField("Praktik År", praktiklængdeÅr);
+                   // pdfFormFields.SetField("Praktik Md", praktiklængdeMåneder);
+                   // pdfFormFields.SetField("Praktik Uger", praktiklængdeUger);
                   
                    
 
 
-                    ////Document doc = new Document(@"..\..\Table.doc");
-                    ////Section section = doc.Sections[0];
-                    ////ITable table = section.Tables[0];
-                    //////#region replace text
-                    //////TableCell cell1 = table.Rows[1].Cells[1];
-                    //////Paragraph p1 = cell1.Paragraphs[0];
-                    //////p1.Text = "abc";
-
-                    //////TableCell cell2 = table.Rows[1].Cells[2];
-                    //////Paragraph p2 = cell2.Paragraphs[0];
-                    //////p2.Items.Clear();
-                    //////p2.AppendText("def");
-
-                    //////TableCell cell3 = table.Rows[1].Cells[3];
-                    //////Paragraph p3 = cell3.Paragraphs[0];
-                    //////(p3.Items[0] as TextRange).Text = "hij";
-                    //////#endregion
-
-
-                    //pdfFormFields.SetField("Grundforløbet", );
-                    pdfStamper.FormFlattening = false;
+                  
+                   // pdfStamper.FormFlattening = false;
 
 
 
 
-                    //PdfFormWidget formWidget = pdfStamper.FormFlattening as PdfFormWidget;
-                    //for(int i=0; i< formWidget.FieldsWidget.List.Count; i++)
-                    //{
-                    //    PdfField field = formWidget.FieldsWidget.List[i] as PdfField;
-                    //    string fieldNavn = field.Name;
-                    //    bool isRequired = field.Required;
-                    //    if(isRequired)
-                    //    {
-                    //        MessageBox.Show("Mangler du nogle?");
-                    //    }
-                    //}
+                    ////PdfFormWidget formWidget = pdfStamper.FormFlattening as PdfFormWidget;
+                    ////for(int i=0; i< formWidget.FieldsWidget.List.Count; i++)
+                    ////{
+                    ////    PdfField field = formWidget.FieldsWidget.List[i] as PdfField;
+                    ////    string fieldNavn = field.Name;
+                    ////    bool isRequired = field.Required;
+                    ////    if(isRequired)
+                    ////    {
+                    ////        MessageBox.Show("Mangler du nogle?");
+                    ////    }
+                    ////}
 
 
 
 
                    // pdfStamper.FormFlattening = false;
-                    pdfStamper.Close();
+                    //pdfStamper.Close();
                    //pdfWebViewer.Navigate(new Uri("about:blank"));
-                   pdfWebViewer.Navigate(newFile);
+                   //pdfWebViewer.Navigate(newFile);
 
 
-                }
-            }
+                //}
+            //}
 
         }
 
-        public void clear()
-        {
-            IEnumerable<RadioButton> radioButtons = radioButtonValidation.Children.OfType<RadioButton>();
-            Dictionary<string, List<RadioButton>> radioBtnList = new Dictionary<string, List<RadioButton>>();
+        //public void clear()
+        //{
+        //    IEnumerable<RadioButton> radioButtons = radioButtonValidation.Children.OfType<RadioButton>();
+        //    Dictionary<string, List<RadioButton>> radioBtnList = new Dictionary<string, List<RadioButton>>();
 
 
 
-            foreach (RadioButton item in radioButtons)
-            {
-                if (item.GroupName == "RadioClass")
-                {
-                    item.IsChecked = false;
-                }
-                if (item.GroupName == "experience")
-                {
-                    item.IsChecked = false;
-                }
-                if (item.GroupName == "age")
-                {
-                    item.IsChecked = false;
-                }
+        //    foreach (RadioButton item in radioButtons)
+        //    {
+        //        if (item.GroupName == "RadioClass")
+        //        {
+        //            item.IsChecked = false;
+        //        }
+        //        if (item.GroupName == "experience")
+        //        {
+        //            item.IsChecked = false;
+        //        }
+        //        if (item.GroupName == "age")
+        //        {
+        //            item.IsChecked = false;
+        //        }
 
 
-            }
-            
+        //    }
 
-            if (this.ComboboxValidation.SelectedItem != null)
-            {
-                this.ComboboxValidation.SelectedIndex = -1;
-            }
-        }
 
-       
+        //    if (this.ComboboxValidation.SelectedItem != null)
+        //    {
+        //        this.ComboboxValidation.SelectedIndex = -1;
+        //    }
+        //}
+
+
 
         private void passwordText_KeyDown(object sender, KeyEventArgs e)
         {
-            ViewElevsList viewElevsList = new ViewElevsList();
-            if (e.Key == Key.Enter)
-            {
-                if(passwordText.Password == "1234")
-                {
-                    viewElevsList.Show();
-                    this.Close();
-                }
-                else if(passwordText.Password == "")
-                {
-                    MessageBox.Show("Indtast adgangskode!!");
-                }
-                else
-                {
-                    MessageBox.Show("ugyldig adgangskode!!");
-                }
+            //ViewElevsList viewElevsList = new ViewElevsList();
+            //if (e.Key == Key.Enter)
+            //{
+            //    if(passwordText.Password == "1234")
+            //    {
+            //        viewElevsList.Show();
+            //        this.Close();
+            //    }
+            //    else if(passwordText.Password == "")
+            //    {
+            //        MessageBox.Show("Indtast adgangskode!!");
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("ugyldig adgangskode!!");
+            //    }
 
-            }
-            
+            //}
+
 
         }
+
+
+
     }
 
 }
+
 
 
         

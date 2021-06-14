@@ -8,7 +8,7 @@
         xmlns:local="clr-namespace:SkpProject"
         
         mc:Ignorable="d"
-        Title="TEC App" Height="700" Width="1020">
+        Title="TEC App" Height="700" Width="1200">
 
     <Grid >
 
@@ -24,7 +24,7 @@
                 <Button Margin="20,30" Background="Gray" Height="50" Foreground="White" FontSize="22" Name="btnHome" Click="btnHome_Click" >Home</Button>
                 <Button Margin="20,30" Background="Gray" Height="50" Foreground="White" FontSize="22" Name="btnUnderviser" Click="btnUnderviser_Click" >Underviser</Button>
                 <Button Margin="20,30" Background="Gray" Height="50" Foreground="White" FontSize="22" Name="btnLeder" Click="btnLeder_Click" >Leder</Button>
-                <Image Margin="10,200" Height="150" Width="200" Source="Resources/TECLOGO.png" />
+                <Image Margin="10,200" Height="150" Width="200" HorizontalAlignment="Center" VerticalAlignment="Bottom" Source="Resources/TECLOGO.png" />
 
             </StackPanel>
 
@@ -172,6 +172,94 @@
 
                         <StackPanel Margin="10"  Grid.Column="0" Grid.Row="4"   x:Name="radioButtonValidation" >
 
+
+                            <Label Content="Ansøgnig om merit på Grundforløb , GF2:" Margin="10" FontSize="20" FontWeight="Bold" />
+                            <Border BorderBrush="Gray" BorderThickness="1" Margin="10" x:Name="DanskValidation" >
+                                <StackPanel Margin="10">
+                                    <Label Content="Dansk:" FontSize="20" FontWeight="Bold"/>
+                                    <DockPanel>
+                                        <Label Content="Eksamen" FontSize="10"/>
+                                        <CheckBox x:Name="DanskEksamenChecked"  Margin="5" HorizontalAlignment="Left"/>
+
+                                        <Label Content="Undervis" FontSize="10"/>
+                                        <CheckBox x:Name="DanskUndervisChecked"  Margin="5" HorizontalAlignment="Left"/>
+
+                                        <Label Content="Niveau" FontSize="10"/>
+                                        <ComboBox x:Name="ComboboDansk">
+                                            <ComboBoxItem Content="A"/>
+                                            <ComboBoxItem Content="B"/>
+                                            <ComboBoxItem Content="C"/>
+                                            <ComboBoxItem Content="D"/>
+                                            <ComboBoxItem Content="E"/>
+                                            <ComboBoxItem Content="F"/>
+                                            <ComboBoxItem Content="G"/>
+                                        </ComboBox>
+                                    </DockPanel>
+                                   
+
+                                </StackPanel>
+                                
+                            </Border>
+
+                            
+                            
+                            <Border BorderBrush="Gray" BorderThickness="1" Margin="10" x:Name="EngelskValidation">
+                                <StackPanel Margin="10">
+                                    <Label Content="Engelsk:" FontSize="20" FontWeight="Bold"/>
+                                    <DockPanel>
+                                        <Label Content="Eksamen" FontSize="10"/>
+                                        <CheckBox x:Name="EngelskEksamenChecked"  Margin="5" HorizontalAlignment="Left"/>
+
+                                        <Label Content="Undervis" FontSize="10"/>
+                                        <CheckBox x:Name="EngelskUndervisChecked"  Margin="5" HorizontalAlignment="Left"/>
+
+                                        <Label Content="Niveau" FontSize="10"/>
+                                        <ComboBox x:Name="ComboboxEngelsk">
+                                            <ComboBoxItem Content="A"/>
+                                            <ComboBoxItem Content="B"/>
+                                            <ComboBoxItem Content="C"/>
+                                            <ComboBoxItem Content="D"/>
+                                            <ComboBoxItem Content="E"/>
+                                            <ComboBoxItem Content="F"/>
+                                            <ComboBoxItem Content="G"/>
+                                        </ComboBox>
+                                    </DockPanel>
+
+
+                                </StackPanel>
+
+                            </Border>
+
+
+
+
+                            <Border BorderBrush="Gray" BorderThickness="1" Margin="10" x:Name="MatematikValidation">
+                                <StackPanel Margin="10">
+                                    <Label Content="Matematik:" FontSize="20" FontWeight="Bold"/>
+                                    <DockPanel>
+                                        <Label Content="Eksamen" FontSize="10"/>
+                                        <CheckBox x:Name="MatematikEksamenChecked"  Margin="5" HorizontalAlignment="Left"/>
+
+                                        <Label Content="Undervis" FontSize="10"/>
+                                        <CheckBox x:Name="MatematikUndervisChecked"  Margin="5" HorizontalAlignment="Left"/>
+
+                                        <Label Content="Niveau" FontSize="10"/>
+                                        <ComboBox x:Name="ComboboxMatematik">
+                                            <ComboBoxItem Content="A"/>
+                                            <ComboBoxItem Content="B"/>
+                                            <ComboBoxItem Content="C"/>
+                                            <ComboBoxItem Content="D"/>
+                                            <ComboBoxItem Content="E"/>
+                                            <ComboBoxItem Content="F"/>
+                                            <ComboBoxItem Content="G"/>
+                                        </ComboBox>
+                                    </DockPanel>
+
+
+                                </StackPanel>
+
+                            </Border>
+
                             <!--<DatePicker Width="150" HorizontalAlignment="Left" Name="DateTimePiker" SelectedDateChanged="DateTimePiker_SelectedDateChanged"></DatePicker>
                             <TextBlock x:Name="ShowAge" HorizontalAlignment="left" Height="20" Width="30" FontSize="10" />-->
                             <!--<DockPanel>-->
@@ -181,36 +269,36 @@
                                 <!--<TextBlock x:Name="ViseAlder" HorizontalAlignment="left" Height="20" Width="30" FontSize="10" />-->
                             <!--</DockPanel>-->
                            
-                                <StackPanel x:Name="Age">
+                                <!--<StackPanel x:Name="Age">
                                     <RadioButton ClickMode="Press" GroupName="age" x:Name="over25"  >Over 25</RadioButton>
                                     <RadioButton ClickMode="Press" GroupName="age" x:Name="under25"  >Under 25</RadioButton>
-                                </StackPanel>
+                                </StackPanel>-->
                             
 
 
                             
-                            <Label FontWeight="Bold" >Har du 9 klasse?</Label>
+                            <!--<Label FontWeight="Bold" >Har du 9 klasse?</Label>
                             <RadioButton ClickMode="Press" GroupName="RadioClass"  x:Name="NineClassYes"  >Ja</RadioButton>
                             <RadioButton ClickMode="Press" GroupName="RadioClass"   x:Name="NineClassNo">Nej</RadioButton>
-                            <RadioButton ClickMode="Press" GroupName="RadioClass"   x:Name="NineClassMaybe" >Måske</RadioButton>
+                            <RadioButton ClickMode="Press" GroupName="RadioClass"   x:Name="NineClassMaybe" >Måske</RadioButton>-->
 
 
-                            <Label FontWeight="Bold" x:Name="radioButtonErfaringValidation"  >Har du nogle erfaring?</Label>
+                            <!--<Label FontWeight="Bold" x:Name="radioButtonErfaringValidation"  >Har du nogle erfaring?</Label>
 
                             <RadioButton ClickMode="Press" GroupName="experience" x:Name="experienceYes"  >Ja</RadioButton>
                             <RadioButton ClickMode="Press" GroupName="experience" x:Name="experienceNo" >Nej</RadioButton>
-                            <RadioButton ClickMode="Press" GroupName="experience" x:Name="experienceMaybe" >Måske</RadioButton>
+                            <RadioButton ClickMode="Press" GroupName="experience" x:Name="experienceMaybe" >Måske</RadioButton>-->
 
                             
-                                <Label  Grid.Column="0" Grid.Row="7" FontWeight="Bold" Content="Vælg en item:" />
+                                <!--<Label  Grid.Column="0" Grid.Row="7" FontWeight="Bold" Content="Vælg en item:" />
                             <ComboBox Background="WhiteSmoke" Height="20" Width="200" HorizontalAlignment="Left" Name="ComboboxValidation">
                                     <ComboBoxItem x:Name="ItSupport">It-support</ComboBoxItem>
                                     <ComboBoxItem x:Name="Programmering" >Programmering</ComboBoxItem>
                                     <ComboBoxItem x:Name="Infrastruktur">Infrastruktur</ComboBoxItem>
-                                </ComboBox>
+                                </ComboBox>-->
                             
 
-                            <Border BorderBrush="Gray" BorderThickness="1" Margin="10">
+                            <!--<Border BorderBrush="Gray" BorderThickness="1" Margin="10">
                             <StackPanel x:Name="Grundforløbet" >
                                 <Label>Det vurderes at elevens kompetencer for uddannelsen / (evt) i specialet er nået for:</Label> 
                             <Label FontWeight="Bold" >Grundforløbet</Label>
@@ -218,10 +306,10 @@
                             <RadioButton ClickMode="Press" GroupName="Grundforløbet" x:Name="GrundforløbetDeleHeraf">Dele heraf</RadioButton>
                             <RadioButton ClickMode="Press" GroupName="Grundforløbet" x:Name="GrundforløbetJa">Ja</RadioButton>
                             </StackPanel>
-                            </Border>
+                            </Border>-->
 
 
-                            <Border BorderBrush="Gray" BorderThickness="1" Margin="10">
+                            <!--<Border BorderBrush="Gray" BorderThickness="1" Margin="10">
                                 <StackPanel x:Name="Hovedforløbet" >
                                     <Label>Det vurderes at elevens kompetencer for uddannelsen / (evt) i specialet er nået for:</Label>
                                     <Label FontWeight="Bold" >Hovedforløbets skoleophold</Label>
@@ -229,9 +317,10 @@
                                     <RadioButton ClickMode="Press" GroupName="Hovedforløbet" x:Name="HovedforløbetDeleHeraf">Dele heraf</RadioButton>
                                     <RadioButton ClickMode="Press" GroupName="Hovedforløbet" x:Name="HovedforløbetJa">Ja</RadioButton>
                                 </StackPanel>
-                            </Border>
+                            </Border>-->
+                            
 
-                            <Border BorderBrush="Gray" BorderThickness="1" Margin="10">
+                            <!--<Border BorderBrush="Gray" BorderThickness="1" Margin="10">
                                 <StackPanel>
                                     <Label>Uddannelsesforløbets samlede længde GF + HF + praktik</Label>
                                     <Label>GF Uger:</Label>
@@ -247,7 +336,7 @@
 
                                 </StackPanel>
                                 
-                            </Border>
+                            </Border>-->
 
 
                             <!--<Label   Grid.Column="0" Grid.Row="7" FontWeight="Bold">Notification:</Label>

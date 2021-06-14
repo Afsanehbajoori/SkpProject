@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SkpProject"
         mc:Ignorable="d"
-        Title="ViewElevsList" Height="700" Width="1020">
+        Title="ViewElevsList" Height="700" Width="1200">
     <Grid>
         <StackPanel HorizontalAlignment="Stretch" Background="WhiteSmoke" Margin="10" Visibility="Visible">
             <!--<DataGrid Margin="5" Name="ElevsGrid" ColumnWidth="*" CanUserAddRows="False" MinColumnWidth="100" CanUserResizeColumns="True" SelectionChanged="ElevsGrid_SelectionChanged" >

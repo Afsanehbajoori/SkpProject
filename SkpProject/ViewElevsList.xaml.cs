@@ -132,7 +132,14 @@ namespace SkpProject
             List<Student> students = new List<Student>();
             Data _data = new Data();
             _data.GetStudents();
-            SearchStudentBox.Items.Remove(SearchStudentBox.SelectedItem);
+
+            var selectedItem = SearchStudentBox.SelectedItems as ListBox;
+            if(selectedItem !=null)
+            {
+                SearchStudentBox.Items.Remove(SearchStudentBox.SelectedItem);
+                
+            }
+            
 
 
             //for(int i=students.Count -1;i>=0 ; i--)
